@@ -825,11 +825,15 @@ nav#main-nav ul li.current a i {
 
 .skills {
 	padding: 0;
-	background: #fff;
+	background: #f5f5f5;
 }
 
 .skills .section-title {
-	margin-bottom: 90px;
+	margin-top: 90px;
+}
+
+.skills .lead {
+	margin-bottom: 45px;
 }
 
 .skills .percent {
@@ -1509,12 +1513,12 @@ body.project-page #project-page p {
 }
 
 body.project-page #project-page .flex-control-paging li a {
-	background: #fffff;
+	background: #ffffff;
 	box-shadow: none;
 }
 
 body.project-page #project-page .flex-control-paging li a:hover {
-	background: #fffff;
+	background: #ffffff;
 }
 
 body.project-page #project-page .flex-control-paging li a.flex-active { 
