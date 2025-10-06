@@ -75,6 +75,68 @@ html {
   transform: scale(1.1);
 }
 
+/* Skills Section Fix */
+.skills.section {
+  padding: 4rem 0 !important;
+  background: #f8f9fa !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+.skills .section-title {
+  color: var(--dark-color);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem !important;
+  text-align: center;
+}
+
+.skills .lead {
+  color: var(--secondary-color);
+  font-size: 1.25rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.skills .line-color {
+  width: 60px;
+  height: 3px;
+  background: var(--primary-color);
+  margin: 1rem auto 2rem;
+}
+
+.skills .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skills .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.skills .col-md-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding: 0 15px;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .skills .col-md-3 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .skills .col-md-3 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
 /* Modern Card Components */
 .skill-item {
   background: var(--white);
@@ -84,6 +146,8 @@ html {
   text-align: center;
   transition: var(--transition);
   height: 100%;
+  display: block;
+  margin-bottom: 1rem;
 }
 
 .skill-item:hover {

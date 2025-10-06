@@ -235,26 +235,46 @@ class ModernPortfolio {
 
     // Modern Skill Charts with Chart.js
     initSkillCharts() {
-        const skillCharts = document.querySelectorAll('.chart, .easyPieChart');
-        
-        skillCharts.forEach(chart => {
-            const percent = parseInt(chart.getAttribute('data-percent'));
+        // Wait a bit for DOM to be fully ready
+        setTimeout(() => {
+            const skillCharts = document.querySelectorAll('.chart, .easyPieChart');
             
-            // Clear existing content (percentage span)
-            const existingSpan = chart.querySelector('.percent');
-            if (existingSpan) {
-                existingSpan.style.display = 'none';
-            }
+            console.log('Found skill charts:', skillCharts.length); // Debug log
             
-            const canvas = document.createElement('canvas');
-            canvas.width = 150;
-            canvas.height = 150;
-            canvas.style.display = 'block';
-            canvas.style.margin = '0 auto';
-            chart.appendChild(canvas);
-            
-            this.createCircularChart(canvas, percent);
-        });
+            skillCharts.forEach((chart, index) => {
+                const percent = parseInt(chart.getAttribute('data-percent'));
+                
+                console.log(`Chart ${index}: ${percent}%`); // Debug log
+                
+                // Clear existing content (percentage span)
+                const existingSpan = chart.querySelector('.percent');
+                if (existingSpan) {
+                    existingSpan.style.display = 'none';
+                }
+                
+                // Ensure chart container is visible
+                chart.style.display = 'block';
+                chart.style.minHeight = '150px';
+                
+                const canvas = document.createElement('canvas');
+                canvas.width = 150;
+                canvas.height = 150;
+                canvas.style.display = 'block';
+                canvas.style.margin = '0 auto';
+                chart.appendChild(canvas);
+                
+                this.createCircularChart(canvas, percent);
+                
+                // Add percentage text below chart
+                const percentText = document.createElement('div');
+                percentText.textContent = percent + '%';
+                percentText.style.fontSize = '2rem';
+                percentText.style.fontWeight = 'bold';
+                percentText.style.color = 'var(--primary-color)';
+                percentText.style.marginTop = '1rem';
+                chart.appendChild(percentText);
+            });
+        }, 100);
     }
 
     createCircularChart(canvas, percent) {
