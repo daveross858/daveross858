@@ -1,0 +1,50 @@
+
+
+		<!-- START PROJECT -->
+		<section id="project-page">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 video-container">
+                        
+                        <iframe src="https://player.vimeo.com/video/18205809" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="https://vimeo.com/18205809">VERB TV features &quot;What is This&quot; video by Illegal Productions</a> from <a href="https://vimeo.com/user5584597">David Ross</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+                        
+					</div><!-- END COLUMN 12 -->
+					<div class="col-md-12 project-info">
+						<h3 class="project-title">What Is This?</h3><br />
+                        <h4 class="project-subtitle">Illegal Productions Inc.</h4>
+						<p>What is This? is a marketing video created to promote the Illegal Productions brand. The video was showcased on "VERB TV", a show brodcast on local stations as well as featured on <a href="#" data-toggle="modal" data-target="#myModal">"Grind TV"</a> of Yahoo sports.</p>
+                        <ul class="project-details">
+							<li><span>Categories</span> product management</li>
+                            <li><span>Company</span> Illegal Productions Inc.</li>
+						</ul>
+                        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <img src="../images/projects/yahoo.png" class="img-responsive">
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+						<a href="https://www.youtube.com/user/daveross858/videos" class="button-border-white">View Online</a>
+					</div><!-- END COLUMN 12 -->			
+				</div><!-- END ROW -->
+			</div><!-- END CONTAINER -->      
+		</section>
+		<!-- END PROJECT PAGE SECTION -->
+        <script type="application/javascript"> 
+            function centerModal() {
+                $(this).css('display', 'block');
+                var $dialog = $(this).find(".modal-dialog");
+                var offset = ($(window).height() - $dialog.height()) / 2;
+                // Center modal vertically in window
+                $dialog.css("margin-top", offset);
+            }
+
+            $('.modal').on('show.bs.modal', centerModal);
+            $(window).on("resize", function () {
+                $('.modal:visible').each(centerModal);
+            });
+        </script> 
+	
+	
