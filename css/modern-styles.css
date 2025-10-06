@@ -75,12 +75,24 @@ html {
   transform: scale(1.1);
 }
 
+/* Fix for hidden animated elements */
+.csstransitions .animated, 
+.animated {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
 /* Skills Section Fix */
 .skills.section {
   padding: 4rem 0 !important;
   background: #f8f9fa !important;
   display: block !important;
   visibility: visible !important;
+}
+
+.skills .animated {
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .skills .section-title {

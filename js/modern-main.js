@@ -96,6 +96,7 @@ class ModernPortfolio {
                     
                     // Legacy support for existing animations
                     if (entry.target.classList.contains('animated')) {
+                        entry.target.style.visibility = 'visible';
                         entry.target.style.opacity = '1';
                         entry.target.style.transform = 'translateY(0)';
                     }
@@ -105,7 +106,15 @@ class ModernPortfolio {
 
         // Observe animated elements
         document.querySelectorAll('.animated, .animate-on-scroll').forEach(el => {
-            // Prepare elements for animation
+            // Special handling for skills section - make immediately visible
+            if (el.closest('.skills')) {
+                el.style.visibility = 'visible';
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+                return; // Don't add to observer
+            }
+            
+            // Prepare other elements for animation
             if (el.classList.contains('animated')) {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(30px)';
