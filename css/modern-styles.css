@@ -20,6 +20,16 @@
   --transition: all 0.15s ease-in-out;
 }
 
+/* Background Image */
+.image-background {
+  background-image: url('../images/bg_big.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
 /* Modern Scroll Behavior */
 html {
   scroll-behavior: smooth;
