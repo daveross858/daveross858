@@ -188,13 +188,22 @@ class ModernPortfolio {
 
     // Modern Skill Charts with Chart.js
     initSkillCharts() {
-        const skillCharts = document.querySelectorAll('.chart');
+        const skillCharts = document.querySelectorAll('.chart, .easyPieChart');
         
         skillCharts.forEach(chart => {
             const percent = parseInt(chart.getAttribute('data-percent'));
+            
+            // Clear existing content (percentage span)
+            const existingSpan = chart.querySelector('.percent');
+            if (existingSpan) {
+                existingSpan.style.display = 'none';
+            }
+            
             const canvas = document.createElement('canvas');
             canvas.width = 150;
             canvas.height = 150;
+            canvas.style.display = 'block';
+            canvas.style.margin = '0 auto';
             chart.appendChild(canvas);
             
             this.createCircularChart(canvas, percent);
