@@ -91,15 +91,62 @@ class ModernPortfolio {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    // Add modern CSS animations
+                    entry.target.classList.add('animate-in');
+                    
+                    // Legacy support for existing animations
+                    if (entry.target.classList.contains('animated')) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
                 }
             });
         }, observerOptions);
 
         // Observe animated elements
-        document.querySelectorAll('.animated').forEach(el => {
+        document.querySelectorAll('.animated, .animate-on-scroll').forEach(el => {
+            // Prepare elements for animation
+            if (el.classList.contains('animated')) {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease-out';
+            }
             observer.observe(el);
         });
+        
+        // Initialize back to top button
+        this.initBackToTop();
+    }
+
+    // Back to Top Button Functionality
+    initBackToTop() {
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        if (backToTopBtn) {
+            // Show/hide button based on scroll position
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.style.display = 'block';
+                    backToTopBtn.style.opacity = '1';
+                } else {
+                    backToTopBtn.style.opacity = '0';
+                    setTimeout(() => {
+                        if (window.pageYOffset <= 300) {
+                            backToTopBtn.style.display = 'none';
+                        }
+                    }, 300);
+                }
+            });
+            
+            // Smooth scroll to top
+            backToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
     }
 
     // Modern Portfolio with CSS Grid/Flexbox

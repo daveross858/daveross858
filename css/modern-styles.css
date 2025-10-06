@@ -256,6 +256,35 @@ html {
   100% { transform: rotate(360deg); }
 }
 
+/* Modern Back to Top Button */
+#back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  background: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  display: none;
+  opacity: 0;
+  transition: var(--transition);
+  box-shadow: var(--box-shadow);
+}
+
+#back-to-top:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+#back-to-top i {
+  font-size: 1.2rem;
+}
+
 /* Modern Error States */
 .error {
   color: var(--danger-color);
