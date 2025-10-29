@@ -59,16 +59,88 @@ table {
 	border-spacing: 0;
 }
 
-
 /* ==================================================================
-	Bootstrap fix for WinPhone 8 and IE10 
+	CSS Custom Properties (Variables)
 ================================================================== */
 
-@-webkit-viewport   { width: device-width; }
-@-moz-viewport      { width: device-width; }
-@-ms-viewport       { width: device-width; }
-@-o-viewport        { width: device-width; }
-@viewport           { width: device-width; }
+/* Tailwind-compatible Custom Properties */
+:root {
+  --primary-color: #470f0e; /* red-600 */
+  --secondary-color: #6b7280; /* gray-500 */
+  --success-color: #10b981; /* emerald-500 */
+  --danger-color: #ef4444; /* red-500 */
+  --warning-color: #f59e0b; /* amber-500 */
+  --info-color: #3b82f6; /* blue-500 */
+  --light-color: #f9fafb; /* gray-50 */
+  --dark-color: #1f2937; /* gray-800 */
+  --white: #ffffff;
+  --black: #000000;
+  
+  --font-family-sans-serif: 'Open Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-serif: 'Lato', ui-serif, Georgia, Cambria, serif;
+  --font-family-monospace: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  
+  --border-radius: 0.5rem;
+  --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --transition: all 0.3s ease-in-out;
+}
+
+/* ==================================================================
+	Bootstrap fix for WinPhone 8 and IE10 - now handled by meta viewport tag
+================================================================== */
+
+/* Viewport rules removed - handled by HTML meta viewport tag */
+
+
+/* ==================================================================
+	Utility Classes - Essential Patterns Not Covered by Tailwind
+	
+	Usage: Add these classes to HTML elements for patterns not easily replicated in Tailwind
+	Example: <div class="text-center u-table u-transition-fast">
+	
+	Layout: .u-table, .u-table-cell, .u-margin-auto
+	Animation: .u-transition-fast, .u-transition-slow, .u-transition-medium, .u-transition-form
+	
+	Note: Most utilities now use Tailwind equivalents:
+	- text-center (instead of u-center)
+	- absolute/relative/fixed (instead of u-absolute/u-relative/u-fixed)
+	- uppercase (instead of u-uppercase)
+	- font-light/font-normal (instead of u-font-light/u-font-normal)
+	- block/inline-block (instead of u-block/u-inline-block)
+	- w-full/h-full (instead of u-full-width/u-full-height)
+	- rounded-full (instead of u-circle)
+================================================================== */
+
+/* Layout utilities - Essential ones that don't have Tailwind equivalents */
+.u-table {
+	display: table;
+}
+
+.u-table-cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.u-margin-auto {
+	margin: 0 auto;
+}
+
+/* Transition utilities - Complex transitions not easily replicated in Tailwind */
+.u-transition-fast {
+	transition: all .3s ease-in-out;
+}
+
+.u-transition-slow {
+	transition: all .8s ease;
+}
+
+.u-transition-medium {
+	transition: all .4s ease;
+}
+
+.u-transition-form {
+	transition: background-color .3s ease, border .3s ease, color .3s ease;
+}
 
 
 /* ==================================================================
@@ -85,11 +157,7 @@ body {
 	overflow-x: hidden;
 	position: relative;
 	left: 0;
-	-webkit-transition: all .8s ease;
-	   -moz-transition: all .8s ease;
-		-ms-transition: all .8s ease;
-		 -o-transition: all .8s ease;
-			transition: all .8s ease;
+	transition: all .8s ease;
 }
 
 .active-slide {
@@ -106,44 +174,36 @@ textarea { font: 16px/32px "Open Sans", Helvetica, Arial, sans-serif; }
 ================================================================== */
 
 h1, h2, h3, h4, h5, h6 {
-	text-transform: uppercase;
-	font-weight: 300;
 	margin-bottom: 10px;
 	line-height: 1.1em;
 }
 
+/* Use utility classes: .u-uppercase .u-font-light */
+
 h1 {
-	font-family: 'Open Sans', sans-serif;
 	font-size: 46px;
-	text-transform: uppercase;
-	position: relative;
 	margin-bottom: 0px;
 }
 
 h2 {
-	font-family: 'Open Sans', sans-serif;
 	font-size: 38px;
-	text-transform: uppercase;
-	position: relative;
 }
 
+/* Use utility classes: .u-uppercase .u-relative */
+
 h3 {
-	font-family: 'Open Sans', sans-serif;
 	font-size: 30px;
 }
 
 h4 {
-	font-family: 'Open Sans', sans-serif;
 	font-size: 22px;
 }
 
 h5 {
-	font-family: 'Open Sans', sans-serif;
 	font-size: 20px;
 }
 
 h6 {
-	font-family: 'Open Sans', sans-serif;
 	font-size: 18px;
 }
 
@@ -152,42 +212,38 @@ p {
 }
 
 p.lead {
-	font-family: 'Open Sans', "Times New Roman", Times, serif;
 	font-size: 21px;
 	padding: 0;
 }
 
 .section-title {
-	text-align: center;
 	letter-spacing: 0;
 	margin-bottom: 20px;
 	-webkit-backface-visibility: hidden;
 	   -moz-backface-visibility: hidden;
         -ms-backface-visibility: hidden;
+	backface-visibility: hidden;
     color: #454545;
-    font-weight: 300;
-	position: relative;
 	letter-spacing: 0.1em;
 }
+
+/* Use utility classes: .u-center .u-font-light .u-relative */
 
 .section-sub-title {
 	color: #494949;
 	font-size: 21px;
-	text-align: center;
 	margin-bottom: 30px;
 	letter-spacing: 0.10em;
-	font-weight: 300;
 }
+
+/* Use utility classes: .u-center .u-font-light */
 
 a, a > * {
 	color: #470f0e;
 	text-decoration: none;
-	-webkit-transition: all .3s ease-in-out;
-	-moz-transition: all .3s ease-in-out;
-	-ms-transition: all .3s ease-in-out;
-	-o-transition: all .3s ease-in-out;
-	transition: all .3s ease-in-out;
 }
+
+/* Use utility class: .u-transition-fast */
 
 a:hover, a > *:hover {
 	text-decoration: none;
@@ -207,9 +263,7 @@ strong {
 	Basic Layout Styles
 ================================================================== */
 
-section {
-	text-align: center;
-}
+/* Use utility class: .u-center for sections */
 
 .text-left {
 	text-align: left !important;
@@ -222,75 +276,13 @@ section {
 /* text-center, text-justify now handled by Tailwind */
 
 /* float-left, float-right, center utilities now handled by Tailwind */
-.center {
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
-}
+/* Use utility classes: .u-margin-auto .u-block */
 
 .clear {
 	clear: both;
 }
 
-.all-margin {
-	margin: 20px !important;
-}
-
-.left-margin {
-	margin-left: 20px !important;
-}
-
-.right-margin {
-	margin-right: 20px !important;
-}
-
-.top-margin {
-	margin-top: 20px !important;
-}
-
-.bottom-margin {
-	margin-bottom: 20px !important;
-}
-
-.no-margin {
-	margin: 0 !important;
-}
-
-.no-left-margin {
-	margin-left: 0 !important;
-}
-
-.no-right-margin {
-	margin-right: 0 !important;
-}
-
-.no-top-margin {
-	margin-top: 0 !important;
-}
-
-.no-bottom-margin {
-	margin-bottom: 0 !important;
-}
-
-.no-padding {
-	padding: 0 !important;
-}
-
-.no-left-padding {
-	padding-left: 0 !important;
-}
-
-.no-right-padding {
-	padding-right: 0 !important;
-}
-
-.no-top-padding {
-	padding-top: 0 !important;
-}
-
-.no-bottom-padding {
-	padding-bottom: 0 !important;
-}
+/* Margin and padding utilities now handled by Tailwind classes (m-, p-, mx-, my-, etc.) */
 
 .csstransitions .animated,
 .animated {
@@ -306,9 +298,7 @@ section {
 	height: 100%;
 }
 
-.img-rounded {
-	border-radius: 100%;
-}
+/* Use utility class: .u-circle */
 
 
 /* ==================================================================
@@ -335,11 +325,7 @@ input, textarea, select {
 	-webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
-	-webkit-transition: background-color .3s ease, border .3s ease, color .3s ease;
-	   -moz-transition: background-color .3s ease, border .3s ease, color .3s ease;
-	    -ms-transition: background-color .3s ease, border .3s ease, color .3s ease;
-	     -o-transition: background-color .3s ease, border .3s ease, color .3s ease;
-	        transition: background-color .3s ease, border .3s ease, color .3s ease;
+	/* Use utility class: .u-transition-form */
 }
 
 textarea {
@@ -365,7 +351,6 @@ input[type="text"], input[type="email"] {
 }
 
 input[type="submit"], button {
-	text-transform: uppercase;
 	width: auto;
 	font-style: normal;
 	background: transparent;
@@ -376,6 +361,8 @@ input[type="submit"], button {
 	padding: 10px 20px;
 	letter-spacing: 0.20em;
 }
+
+/* Use utility class: .u-uppercase */
 
 input[type="submit"]:hover, button:hover {
 	color: #ffffff !important;
@@ -541,51 +528,43 @@ input.placeholder, textarea.placeholder { color: #555555; }
 }
 
 .error {
-	position: relative;
 	height: auto;
-	width: 100%;
-	text-align: center;
 	overflow: hidden;
-	display: table;
 }
 
+/* Use utility classes: .u-relative .u-full-width .u-center .u-table */
+
 .error .container-wrapper {
-	display: table-cell;
-	vertical-align: middle;
 	margin: auto;
 }
+
+/* Use utility class: .u-table-cell */
 
 .error .error_box {
 	width: 300px; 
 	height: 300px; 
-	border-radius: 100%; 
-	margin: 0 auto;
-	position: relative;
 	overflow: hidden;
-	display: table;
-	text-align: center;
 }
+
+/* Use utility classes: .u-circle .u-margin-auto .u-relative .u-table .u-center */
 
 .error_box .error_content {
 	padding: 25px;
-	display: table-cell;
-	vertical-align: middle;
-	position: relative;
 	z-index: 2;
 }
 
+/* Use utility classes: .u-table-cell .u-relative */
+
 .error_box .error_overlay {
-	width: 100%;
-	height: 100%;
-	position: absolute;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	background: #470f0e;
 	opacity: 0.9;
-	border-radius: 100%;
 }
+
+/* Use utility classes: .u-full-width .u-full-height .u-absolute .u-circle */
 
 
 /* ==================================================================
@@ -594,7 +573,6 @@ input.placeholder, textarea.placeholder { color: #555555; }
 
 .sidebar {
 	width: 300px;
-	height: 100%;
 	position: fixed;
 	left: -300px;
 	top: 0;
@@ -602,12 +580,9 @@ input.placeholder, textarea.placeholder { color: #555555; }
 	z-index: 10000;
 	overflow: hidden;
 	background: transparent;
-	-webkit-transition: all .8s ease;
-	   -moz-transition: all .8s ease;
-		-ms-transition: all .8s ease;
-		 -o-transition: all .8s ease;
-			transition: all .8s ease;
 }
+
+/* Use utility classes: .u-full-height .u-transition-slow */
 
 .sidebar.active {
 	left: 0;
@@ -634,47 +609,39 @@ input.placeholder, textarea.placeholder { color: #555555; }
 }
 
 .widget-profile {
-	width: 100%;
 	padding: 40px 20px;
-	display: table;
-	text-align: center;
 	margin-bottom: 1px;
-	position: relative;
 	overflow: hidden;
 	background: rgba(255,255,255,0.7);
 }
 
+/* Use utility classes: .u-full-width .u-table .u-center .u-relative */
+
 .profile-details {
-	display: table-cell;
-	vertical-align: middle;
-	position: relative;
 	z-index: 10;
 }
+
+/* Use utility classes: .u-table-cell .u-relative */
 
 /* Removed empty nav#main-nav rule */
 
 nav#main-nav ul li a {
-	font-family: 'Open Sans', sans-serif !important;
-	font-weight: 300 !important;
 	letter-spacing: 0.20em !important;
 }
 
+/* Use utility class: .u-font-light */
+
 .nav-trigger {
-	position: fixed;
 	top: 20px;
 	left: 20px;
 	width: 40px;
 	height: 40px;
 	background: rgba(0,0,0,0.2);
-	text-align: center;
 	line-height: 40px;
 	z-index: 1000;
-	-webkit-transition: all .8s ease;
-	   -moz-transition: all .8s ease;
-		-ms-transition: all .8s ease;
-		 -o-transition: all .8s ease;
-			transition: all .8s ease;
 }
+
+/* Use utility classes: .u-fixed .u-center .u-transition-slow */
 
 .nav-trigger.active {
 	left: 320px;
@@ -696,19 +663,18 @@ nav#main-nav ul li a {
 }
 
 nav#main-nav ul li a {
-	display: block;
 	padding: 1em 1em 1em 1.2em;
 	outline: none;
 	background: #fff;
 	/*border-bottom: 1px solid #d5d5d5;*/
 	margin-bottom: 1px;
 	color: #454545;
-	text-transform: uppercase;
 	letter-spacing: 1px;
-	font-weight: 400;
 	-webkit-transition: background 0.3s, box-shadow 0.3s;
 	transition: background 0.3s, box-shadow 0.3s;
 }
+
+/* Use utility classes: .u-block .u-uppercase .u-font-normal */
 
 nav#main-nav ul li a i {
 	font-size: 17px;
@@ -734,22 +700,14 @@ nav#main-nav ul li.current a i {
 	Home Section
 ================================================================== */
 .home {
-	position: relative;
 	height: auto;
-	width: 100%;
-	text-align: center;
 	overflow: hidden;
 	height: 700px;
-	display: table;
 }
 
-.parallax-image {
-	-webkit-transition: all .4s ease;
-	   -moz-transition: all .4s ease;
-		-ms-transition: all .4s ease;
-		 -o-transition: all .4s ease;
-			transition: all .4s ease;
-}
+/* Use utility classes: .u-relative .u-full-width .u-center .u-table */
+
+/* Use utility class: .u-transition-medium */
 
 .image1 {
 	background-position: center 0%;
@@ -760,22 +718,23 @@ nav#main-nav ul li.current a i {
 }
 
 .home .container-wrapper {
-	display: table-cell;
-	vertical-align: middle;
 	margin: auto;
 }
 
+/* Use utility class: .u-table-cell */
+
 .profile-container {
-	width: 100%;
 	padding: 0 70px;
 }
 
+/* Use utility class: .u-full-width */
+
 .profile-content {
 	max-width: 500px;
-    margin: 0 auto;
-	text-align: center;
 	float: none;
 }
+
+/* Use utility classes: .u-margin-auto .u-center */
 
 .profile-name {
 	margin-bottom: 20px;
@@ -785,13 +744,12 @@ nav#main-nav ul li.current a i {
 .avatar img {
 	width: 110px;
 	height: 110px;
-	border-radius: 50%;
-	display: block;
-	margin: 0 auto;
 	padding: 1px;
 	border: 3px solid #fff;
 	margin-bottom: 20px;
 }
+
+/* Use utility classes: .u-circle .u-block .u-margin-auto */
 
 
 /* ==================================================================
@@ -918,7 +876,6 @@ nav#main-nav ul li.current a i {
 
 .services .service-icon i.fa {
 	color: #ffffff;
-	display: block;
 	margin: 0px auto;
 	margin-bottom: 30px;
 	text-align: center;
@@ -2037,4 +1994,195 @@ body.mobile .animated {
 
 .text-shadow {
     text-shadow: 2px 1px 2px #000000;
+}
+
+/* ==================================================================
+	Modern Styles (merged from css/modern-styles.css)
+================================================================== */
+
+/* Tailwind Integration - Override Bootstrap styles for smooth transition */
+/* .container and .section now handled by Tailwind classes */
+
+/* Skills section background now handled by Tailwind classes */
+
+/* Background Image */
+.image-background {
+  background-image: url('../images/bg_big.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* Modern Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Modern Focus Styles for Better Accessibility */
+*:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Skip to Content Link for Screen Readers */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--primary-color);
+  color: var(--white);
+  padding: 8px;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  z-index: 1000;
+}
+
+.skip-to-content:focus {
+  top: 6px;
+}
+
+/* Modern Navigation Improvements */
+.nav-trigger {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.nav-trigger:hover,
+.nav-trigger:focus {
+  color: var(--primary-color);
+  transform: scale(1.1);
+}
+
+/* Fix for hidden animated elements */
+.csstransitions .animated, 
+.animated {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Animation visibility fixes */
+.skills .animated {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Responsive handled by Tailwind classes */
+
+/* Skill cards now styled with Tailwind classes */
+
+/* Essential skill_desc overrides for compatibility */
+.skill_desc p.small {
+  /* Keep the large font size for skill descriptions as requested */
+  font-size: 45px !important;
+}
+
+/* Modern Chart Styling */
+.chart {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+/* Portfolio styling handled by existing styles and Tailwind classes */
+
+/* Contact form styling handled by Tailwind classes */
+
+/* Button styling handled by Tailwind classes */
+
+/* Modern Animation Classes */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.animate-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --card-background: #2d2d2d;
+  }
+  
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  .skill-item,
+  .contact-form {
+    background: var(--card-background);
+    color: var(--text-color);
+  }
+}
+
+/* Responsive design handled by Tailwind responsive classes */
+
+/* Improved Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Modern Loading States */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2rem;
+  height: 2rem;
+  margin: -1rem 0 0 -1rem;
+  border: 2px solid transparent;
+  border-top: 2px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Back to top button styling handled by Tailwind classes and style.css */
+
+/* Modern Error States */
+.error {
+  color: var(--danger-color);
+  background: rgba(220, 53, 69, 0.1);
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--danger-color);
+}
+
+.success {
+  color: var(--success-color);
+  background: rgba(40, 167, 69, 0.1);
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--success-color);
 }

@@ -43,7 +43,6 @@
 			}
 		</script>
 		<link rel="stylesheet" href="style.css" />
-		<link rel="stylesheet" href="css/modern-styles.css" />
 		
 		<!-- CSS Implementing Plugins -->
 		<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -85,16 +84,16 @@
 		<div class="color-overlay"></div>
 		
 		<!-- START NAVIGATION -->
-		<a href="#" class="nav-trigger"><i class="fa fa-bars"></i></a>
-		<div id="sidebar" class="sidebar ps-container">
+		<a href="#" class="nav-trigger fixed text-center u-transition-slow"><i class="fa fa-bars"></i></a>
+		<div id="sidebar" class="sidebar ps-container h-full u-transition-slow">
 			<div class="sidebar-content">
 			
 				<div class="min-empty-space"></div>
 
-				<div class="widget-profile">
-					<div class="profile-details">
+				<div class="widget-profile w-full u-table text-center relative">
+					<div class="profile-details u-table-cell relative">
 						<div class="avatar">
-							<img src="images/me.jpg" alt="logo">
+							<img src="images/me.jpg" alt="logo" class="rounded-full block u-margin-auto">
 						</div>
 						<h3>David Ross</h3>
 						Product designer, UI/UX Designer
@@ -103,10 +102,10 @@
 				
 				<nav id="main-nav">
 					<ul>
-						<li><a href="#home" class="current"><i class="fa fa-home"></i>Home</a></li>
-                        <li><a href="#portfolio"><i class="fa fa-wrench"></i>Skills</a></li>
-						<li><a href="#services"><i class="fa fa-briefcase"></i>Work</a></li>
-						<li><a href="#social"><i class="fa fa-envelope"></i>Contact</a></li>
+						<li><a href="#home" class="current block uppercase font-normal"><i class="fa fa-home"></i>Home</a></li>
+                        <li><a href="#portfolio" class="block uppercase font-normal"><i class="fa fa-wrench"></i>Skills</a></li>
+						<li><a href="#services" class="block uppercase font-normal"><i class="fa fa-briefcase"></i>Work</a></li>
+						<li><a href="#social" class="block uppercase font-normal"><i class="fa fa-envelope"></i>Contact</a></li>
 					</ul>
 				</nav>
 				
@@ -122,13 +121,13 @@
 		<!-- END NAVIGATION -->
 		
 		<!-- START HOME SECTION -->
-		<section id="home" class="home fullscreen on-menu min-h-screen flex items-center justify-center">
-			<div class="w-full max-w-4xl mx-auto px-6">
+		<section id="home" class="home fullscreen on-menu min-h-screen flex items-center justify-center relative w-full text-center u-table">
+			<div class="w-full max-w-4xl mx-auto px-6 u-table-cell">
 				<div class="text-center">
 					<div class="mb-8">
-                        <div class="mb-6"><img src="images/me.jpg" class="w-48 h-48 mx-auto rounded-full shadow-lg object-cover"/ ></div>
-						<h1 class="text-5xl md:text-6xl font-bold text-white text-center mb-4 drop-shadow-lg">David W. Ross</h1>
-                        <div class="w-16 h-1 bg-red-600 mx-auto mb-6"></div>
+                        <div class="mb-6"><img src="images/me.jpg" class="w-48 h-48 mx-auto rounded-full shadow-lg object-cover block u-margin-auto"/ ></div>
+						<h1 class="text-5xl md:text-6xl font-bold text-white text-center mb-4 drop-shadow-lg uppercase font-light relative">David W. Ross</h1>
+                        <div class="w-16 h-1 mx-auto mb-6"></div>
 						<h2 class="text-xl md:text-2xl text-white text-center leading-relaxed drop-shadow-md px-4">Sr. UX Designer & UX Manager living in Carlsbad, California. Sr. UX Designer & UX Manager at Thermo Fisher Scientific.</h2>
 					</div>
 				</div><!-- END PROFILE-CONTAINER -->
@@ -137,12 +136,12 @@
 		<!-- END HOME SECTION -->
 		
 		<!-- START ABOUT SECTION -->
-		<section id="about" class="about section on-menu py-16 bg-gray-50">
+		<section id="about" class="about section on-menu py-16 bg-gray-50 text-center">
 			<div class="max-w-7xl mx-auto px-6">
 				<div class="text-center">
 					<div class="max-w-4xl mx-auto">
 						<!-- START TITLE -->
-						<h1 class="text-4xl font-bold mb-4 text-gray-900">About Me</h1><!-- END TITLE -->
+						<h1 class="text-4xl font-bold mb-4 text-gray-900 uppercase font-light relative">About Me</h1><!-- END TITLE -->
 						<div class="w-16 h-1 bg-red-600 mx-auto mb-8"></div>
 						<p class="text-lg text-gray-700 leading-relaxed">User Experience leader with 15+ years of expertise in crafting innovative, accessible, and cohesive digital experiences across web, mobile, and SaaS platforms. Proven record in building and scaling design systems, leading cross-functional teams, and driving user-centered design strategies that deliver measurable impact. Passionate about creating inclusive solutions that empower learners, instructors, and organizations to succeed.</p>
 					</div><!-- END CONTENT -->
@@ -152,12 +151,12 @@
 		<!-- END ABOUT SECTION -->
 		
 		<!-- START SKILLS SECTION -->
-		<section id="skills" class="skills section on-menu">
+		<section id="skills" class="skills section on-menu text-center">
 			<div class="max-w-7xl mx-auto px-6">
 				<div class="w-full">
 					<div class="text-center mb-12">
 						<!-- START TITLE -->
-						<h2 class="section-title text-4xl font-bold mb-4">MY SKILLS</h2><!-- END TITLE -->
+						<h2 class="section-title text-4xl font-bold mb-4 text-center font-light relative">MY SKILLS</h2><!-- END TITLE -->
 						<div class="max-w-4xl mx-auto line-color"></div>
 						<p class="lead text-lg text-gray-600 max-w-3xl mx-auto">Core Skills & Expertise developed over 15+ years of UX/UI design leadership.</p>
 					</div><!-- END TITLE SECTION -->
@@ -235,12 +234,12 @@
 		<!-- END SKILLS SECTION -->
 		
 		<!-- START PORTFOLIO SECTION -->
-		<section id="portfolio" class="portfolio-section section on-menu py-16 bg-white">
+		<section id="portfolio" class="portfolio-section section on-menu py-16 bg-white text-center">
 			<div class="max-w-7xl mx-auto px-6">
 				<div class="text-center mb-12">
 					<div class="max-w-4xl mx-auto">
 						<!-- START TITLE -->
-						<h1 class="text-4xl font-bold mb-4 text-gray-900">MY RECENT WORK</h1><!-- END TITLE -->
+						<h1 class="text-4xl font-bold mb-4 text-gray-900 uppercase font-light relative">MY RECENT WORK</h1><!-- END TITLE -->
 						<div class="w-16 h-1 bg-red-600 mx-auto mb-8"></div>
 						<p class="text-lg text-gray-600 leading-relaxed mb-8">This is a collection of some of my work. Here is a range of work from creating the icons and graphics to programming pixel perfect prototypes</p>
 						<nav class="flex flex-wrap justify-center gap-4">
@@ -480,7 +479,7 @@
 		<!-- END PORTFOLIO SECTION -->
 		
 		<!-- START CONTACT SECTION -->
-		<section id="contact" class="contact section on-menu bg-gray-50 py-16">
+		<section id="contact" class="contact section on-menu bg-gray-50 py-16 text-center">
 			<!-- START CONTACT DETAILS -->
 			<div class="contact-details mb-16">
 				<div class="max-w-6xl mx-auto px-6">
@@ -508,9 +507,9 @@
 					<div class="text-center mb-12">
 						<div class="max-w-3xl mx-auto">
 							<!-- START FORM -->
-							<form method="post" action="send-mail.php" class="contact-form">
+							<form method="post" action="send-mail.php" class="contact-form u-transition-form">
 								<!-- START TITLE -->
-								<h1 class="section-title text-4xl font-bold mb-4">Contact</h1><!-- END TITLE -->
+								<h1 class="section-title text-4xl font-bold mb-4 text-center font-light relative">Contact</h1><!-- END TITLE -->
 								<div class="line-color w-16 h-1 bg-red-600 mx-auto mb-8"></div>
 								<p class="text-lg text-gray-600 mb-12">Want to say hello? Want to know more about me? Give me a call or drop me an email and I will get back to you as soon as I can.</p>
 								<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
@@ -526,7 +525,7 @@
 								</div><!-- END GRID -->
 								<textarea name="message" placeholder="Insert your message" class="required w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent h-32 mb-6"></textarea>
 								<div class="response-message mb-4"></div>
-								<input type="submit" value="Send Email" name="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-300 cursor-pointer">	
+								<input type="submit" value="Send Email" name="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-300 cursor-pointer uppercase">	
 							</form><!-- END FORM -->
 						</div><!-- END FORM CONTAINER -->
 					</div><!-- END CENTER -->
@@ -550,7 +549,7 @@
 	
 		<!-- START BACK TO TOP -->
 		<div id="back-to-top" class="fixed bottom-6 right-6 z-50">
-			<a href="#" class="bg-red-600 hover:bg-red-700 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 transform hover:scale-110" aria-label="Back to top">
+			<a href="#" class="bg-red-600 hover:bg-red-700 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 transform hover:scale-110 text-center u-transition-fast" aria-label="Back to top">
 				<i class="fa fa-angle-up text-xl"></i>
 			</a>
 		</div>
