@@ -4,9 +4,13 @@ const urlsToCache = [
   '/',
   '/index.html',
   '/style.css',
-  '/css/animate.min.css',
+  '/js/vanilla-utils.js',
+  '/js/vanilla-main.js',
+  '/js/vanilla-portfolio.js',
+  '/js/vanilla-components.js',
   '/images/me.jpg',
   '/images/bg_big.jpg',
+  '/manifest.json',
   // Add other critical assets
 ];
 

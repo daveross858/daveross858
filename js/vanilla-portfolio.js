@@ -161,7 +161,9 @@ class ProjectLoader {
     
     bindEvents() {
         // Project item clicks
-        document.querySelectorAll('.portfolio-item a').forEach(link => {
+        const portfolioLinks = document.querySelectorAll('.portfolio-item a');
+        
+        portfolioLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const url = link.getAttribute('href');
@@ -251,44 +253,89 @@ class ProjectLoader {
     }
     
     showProject() {
-        const portfolio = document.getElementById('portfolio');
-        if (portfolio) {
-            VanillaJS.smoothScrollTo(portfolio, 800);
+        // Show the extended portfolio section as full-screen modal
+        const extendedPortfolio = document.querySelector('.extended-portfolio');
+        if (extendedPortfolio) {
+            extendedPortfolio.classList.add('show');
+            
+            // Prevent body scrolling when modal is open
+            document.body.style.overflow = 'hidden';
+            
+            // Scroll modal content to top
+            extendedPortfolio.scrollTop = 0;
         }
         
-        // Animate project container
+        // Show project container
         if (this.projectContainer) {
-            const projectHeight = this.projectContainer.scrollHeight;
-            VanillaJS.animate(this.projectContainer, {
-                opacity: '1',
-                height: projectHeight + 'px'
-            }, 800);
+            this.projectContainer.classList.add('show');
             
             // Show controls
-            if (this.projectClose) VanillaJS.fadeIn(this.projectClose, 400);
-            if (this.projectNav) VanillaJS.fadeIn(this.projectNav, 400);
+            if (this.projectClose) {
+                this.projectClose.style.display = 'block';
+            }
+            if (this.projectNav) {
+                this.projectNav.style.display = 'block';
+            }
         }
+        
+        // Add escape key listener
+        this.addEscapeKeyListener();
     }
     
     closeProject() {
         window.location.hash = '#_';
         
-        if (this.projectContainer) {
-            VanillaJS.animate(this.projectContainer, {
-                opacity: '0',
-                height: '0px'
-            }, 800);
+        // Hide the extended portfolio section
+        const extendedPortfolio = document.querySelector('.extended-portfolio');
+        if (extendedPortfolio) {
+            extendedPortfolio.classList.remove('show');
+            
+            // Restore body scrolling
+            document.body.style.overflow = '';
         }
         
-        if (this.projectClose) VanillaJS.fadeOut(this.projectClose, 400);
-        if (this.projectNav) VanillaJS.fadeOut(this.projectNav, 400);
+        if (this.projectContainer) {
+            this.projectContainer.classList.remove('show');
+        }
         
-        // Scroll back to portfolio
-        const portfolio = document.getElementById('portfolio');
-        if (portfolio) {
-            setTimeout(() => {
-                VanillaJS.smoothScrollTo(portfolio, 600);
-            }, 200);
+        if (this.projectClose) this.projectClose.style.display = 'none';
+        if (this.projectNav) this.projectNav.style.display = 'none';
+        
+        // Remove escape key listener
+        this.removeEscapeKeyListener();
+    }
+    
+    addEscapeKeyListener() {
+        this.escapeKeyHandler = (e) => {
+            if (e.key === 'Escape') {
+                this.closeProject();
+            }
+        };
+        document.addEventListener('keydown', this.escapeKeyHandler);
+        
+        // Add click outside to close
+        this.clickOutsideHandler = (e) => {
+            const extendedPortfolio = document.querySelector('.extended-portfolio');
+            if (e.target === extendedPortfolio) {
+                this.closeProject();
+            }
+        };
+        const extendedPortfolio = document.querySelector('.extended-portfolio');
+        if (extendedPortfolio) {
+            extendedPortfolio.addEventListener('click', this.clickOutsideHandler);
+        }
+    }
+    
+    removeEscapeKeyListener() {
+        if (this.escapeKeyHandler) {
+            document.removeEventListener('keydown', this.escapeKeyHandler);
+        }
+        
+        if (this.clickOutsideHandler) {
+            const extendedPortfolio = document.querySelector('.extended-portfolio');
+            if (extendedPortfolio) {
+                extendedPortfolio.removeEventListener('click', this.clickOutsideHandler);
+            }
         }
     }
     
