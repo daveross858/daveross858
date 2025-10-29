@@ -219,22 +219,9 @@ section {
 	text-align: right !important;
 }
 
-.text-center {
-	text-align: center !important;
-}
+/* text-center, text-justify now handled by Tailwind */
 
-.text-justify {
-	text-align: justify !important;
-}
-
-.float-left {
-	float: left !important;
-}
-
-.float-right {
-	float: right !important;
-}
-
+/* float-left, float-right, center utilities now handled by Tailwind */
 .center {
 	margin-left: auto;
 	margin-right: auto;
@@ -331,6 +318,7 @@ section {
 input, textarea, select {
 	background: #f8fdfd;
 	-webkit-appearance: none;
+	appearance: none;
 	color: #555555;
 	border: 1px solid rgba(10, 10, 10, 0.06);
 	padding: 12px 20px;
@@ -401,10 +389,12 @@ select, option {
 
 input[type="checkbox"] {
 	-webkit-appearance: checkbox;
+	appearance: checkbox;
 }
 
 input[type="radio"] {
 	-webkit-appearance: radio;
+	appearance: radio;
 }
 
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #555555; }
@@ -529,9 +519,7 @@ input.placeholder, textarea.placeholder { color: #555555; }
 	position: relative;
 }
 
-.section .container {
-
-}
+/* Removed empty .section .container rule */
 
 .fullwidth-wrapper {
 	width: 100%;
@@ -663,9 +651,7 @@ input.placeholder, textarea.placeholder { color: #555555; }
 	z-index: 10;
 }
 
-nav#main-nav {
-	
-}
+/* Removed empty nav#main-nav rule */
 
 nav#main-nav ul li a {
 	font-family: 'Open Sans', sans-serif !important;
@@ -730,9 +716,7 @@ nav#main-nav ul li a i {
 	color: #454545;
 }
 
-nav#main-nav ul li:first-child a {
-	
-}
+/* Removed empty nav#main-nav ul li:first-child a rule */
 
 nav#main-nav ul li a:hover,
 nav#main-nav ul li.current a {
@@ -823,25 +807,19 @@ nav#main-nav ul li.current a i {
 	Skills Section
 ================================================================== */
 
+/* Skills section styling now handled by Tailwind CSS */
 .skills {
-	padding: 0;
-	background: #f5f5f5;
-}
-
-.skills .section-title {
-	margin-top: 90px;
-}
-
-.skills .lead {
-	margin-bottom: 45px;
+	/* Base styling preserved for compatibility */
+	position: relative;
 }
 
 .skills .percent {
+	/* Chart percentage styling */
 	display: inline-block;
 	line-height: 160px;
-	font-family: 'Lato', serof;
-	font-size:50px;
-	font-weight:300;
+	font-family: 'Lato', serif;
+	font-size: 50px;
+	font-weight: 300;
 	z-index: 2;
 }
 
@@ -851,20 +829,10 @@ nav#main-nav ul li.current a i {
 	font-size: 40px;
 }
 
+/* skill_desc styling now handled by Tailwind + modern-styles.css overrides */
 .skill_desc {
-	margin: 20px 0;
-	margin-bottom: 0;
-}
-
-.skill_desc p.lead {
-	font-weight: 300;
-	margin-bottom: 0;
-    height: 60px;
-}
-
-.skill_desc p {
-	line-height: 1.2;
-	padding:0;
+	/* Minimal base styling */
+	position: relative;
 }
 
 
@@ -1224,9 +1192,7 @@ nav#main-nav ul li.current a i {
 	margin: 10px;
 }
 
-.portfolio .portfolio-item.column-big {
-	
-}
+/* Removed empty .portfolio .portfolio-item.column-big rule */
 
 .portfolio .portfolio-item .project-container {
 	position: relative;
@@ -1388,13 +1354,7 @@ nav#main-nav ul li.current a i {
 	display: none;
 }
 
-.project-prev a {
-
-}
-
-.project-next a {
-
-}
+/* Removed empty .project-prev a and .project-next a rules */
 
 .project-close {
 	position: absolute;
@@ -1444,6 +1404,7 @@ nav#main-nav ul li.current a i {
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	-ms-backface-visibility: hidden;
+	backface-visibility: hidden;
     display: inline-block;
     color: #ffffff;
 	margin-bottom: 40px;
@@ -1461,6 +1422,7 @@ nav#main-nav ul li.current a i {
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	-ms-backface-visibility: hidden;
+	backface-visibility: hidden;
     display: inline-block;
     color: #ffffff;
     font-size: 24px;
@@ -1713,9 +1675,7 @@ p.quote {
 	Map Section
 ================================================================== */
 
-.map {
-	
-}
+/* Removed empty .map rule */
 
 #map_canvas {
 	width: 100%;
