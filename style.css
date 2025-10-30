@@ -814,6 +814,10 @@ nav#main-nav ul li.current a i {
 	margin: 10px auto;
 }
 
+.portfolio-container .container {
+	margin: auto;
+}
+
 .portfolio {
 	text-align: left;
 	overflow: visible !important;
@@ -968,6 +972,10 @@ button[data-filter]:not(.active) {
 	z-index: 9999;
 	display: none;
 	overflow-y: auto;
+}
+
+.extended-portfolio .container {
+	margin: auto;
 }
 
 .extended-portfolio.show {
