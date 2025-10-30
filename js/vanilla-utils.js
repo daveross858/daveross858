@@ -123,6 +123,104 @@ var VanillaJS = {
         }
         
         animate();
+    },
+
+    // Smooth scroll to element
+    smoothScrollTo: function(element, duration) {
+        if (!element) return;
+        
+        duration = duration || 1000;
+        var targetPosition = element.offsetTop;
+        var startPosition = window.pageYOffset;
+        var distance = targetPosition - startPosition;
+        var start = Date.now();
+        
+        function animate() {
+            var elapsed = Date.now() - start;
+            var progress = Math.min(elapsed / duration, 1);
+            var easeInOutQuad = progress < 0.5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress;
+            
+            window.scrollTo(0, startPosition + distance * easeInOutQuad);
+            
+            if (progress < 1) {
+                setTimeout(animate, 16);
+            }
+        }
+        
+        animate();
+    },
+
+    // Get browser information
+    getBrowser: function() {
+        var userAgent = navigator.userAgent;
+        var browsers = {
+            chrome: /chrome/i,
+            safari: /safari/i,
+            firefox: /firefox/i,
+            ie: /internet explorer/i,
+            edge: /edge/i
+        };
+        
+        for (var browser in browsers) {
+            if (browsers[browser].test(userAgent)) {
+                return browser;
+            }
+        }
+        return 'unknown';
+    },
+
+    // Check if mobile device
+    isMobile: function() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    },
+
+    // Get window height
+    getWindowHeight: function() {
+        return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    },
+
+    // Animate element properties
+    animate: function(element, properties, duration, callback) {
+        if (!element) return;
+        
+        duration = duration || 400;
+        var start = Date.now();
+        var initialValues = {};
+        
+        // Get initial values
+        for (var prop in properties) {
+            if (prop === 'scrollTop') {
+                initialValues[prop] = element.scrollTop || 0;
+            } else {
+                initialValues[prop] = parseFloat(window.getComputedStyle(element)[prop]) || 0;
+            }
+        }
+        
+        function animate() {
+            var elapsed = Date.now() - start;
+            var progress = Math.min(elapsed / duration, 1);
+            var easeInOutQuad = progress < 0.5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress;
+            
+            for (var prop in properties) {
+                var startValue = initialValues[prop];
+                var endValue = properties[prop];
+                var currentValue = startValue + (endValue - startValue) * easeInOutQuad;
+                
+                if (prop === 'scrollTop') {
+                    element.scrollTop = currentValue;
+                } else {
+                    element.style[prop] = currentValue + (typeof endValue === 'number' ? 'px' : '');
+                }
+            }
+            
+            if (progress < 1) {
+                setTimeout(animate, 16);
+            } else if (callback) {
+                callback();
+            }
+        }
+        
+        animate();
     }
 };
 

@@ -22,8 +22,20 @@ class VanillaPortfolio {
     init() {
         this.setupLayout();
         this.bindEvents();
+        this.initializeActiveFilter();
         this.calculateLayout();
         window.addEventListener('resize', () => this.handleResize());
+    }
+
+    initializeActiveFilter() {
+        // Ensure the "All" filter is active by default
+        const allFilter = document.querySelector('[data-filter="*"]');
+        if (allFilter && !allFilter.classList.contains('active')) {
+            // Remove active from any other filters
+            this.filters.forEach(f => f.classList.remove('active'));
+            // Set All as active
+            allFilter.classList.add('active');
+        }
     }
     
     setupLayout() {
@@ -226,6 +238,8 @@ class ProjectLoader {
             if (projectPage) {
                 this.projectContainer.innerHTML = projectPage.outerHTML;
                 this.showProject();
+                // Initialize carousel after content is loaded
+                this.initializeCarousel();
             } else {
                 throw new Error('Project content not found');
             }
@@ -258,9 +272,6 @@ class ProjectLoader {
         if (extendedPortfolio) {
             extendedPortfolio.classList.add('show');
             
-            // Prevent body scrolling when modal is open
-            document.body.style.overflow = 'hidden';
-            
             // Scroll modal content to top
             extendedPortfolio.scrollTop = 0;
         }
@@ -289,9 +300,6 @@ class ProjectLoader {
         const extendedPortfolio = document.querySelector('.extended-portfolio');
         if (extendedPortfolio) {
             extendedPortfolio.classList.remove('show');
-            
-            // Restore body scrolling
-            document.body.style.overflow = '';
         }
         
         if (this.projectContainer) {
@@ -369,6 +377,81 @@ class ProjectLoader {
             const url = targetLink.getAttribute('href');
             window.location.hash = url;
         }
+    }
+
+    initializeCarousel() {
+        const flexslider = document.querySelector('.extended-portfolio .flexslider');
+        if (!flexslider) return;
+
+        const slidesContainer = flexslider.querySelector('ul.slides');
+        if (!slidesContainer) return;
+
+        const slides = slidesContainer.querySelectorAll('li');
+        if (slides.length <= 1) return;
+
+        let currentSlide = 0;
+
+        // Add navigation controls
+        const controlsHtml = `
+            <div class="flex-direction-nav">
+                <a class="flex-prev" href="#"><i class="fa fa-angle-left"></i></a>
+                <a class="flex-next" href="#"><i class="fa fa-angle-right"></i></a>
+            </div>
+            <ol class="flex-control-paging">
+                ${Array.from(slides).map((_, i) => `<li><a href="#" data-slide="${i}"></a></li>`).join('')}
+            </ol>
+        `;
+        
+        flexslider.insertAdjacentHTML('beforeend', controlsHtml);
+
+        // Hide all slides except first
+        slides.forEach((slide, index) => {
+            slide.style.display = index === 0 ? 'block' : 'none';
+        });
+
+        // Update active states
+        const updateActiveStates = () => {
+            slides.forEach((slide, index) => {
+                slide.style.display = index === currentSlide ? 'block' : 'none';
+            });
+            
+            const pagingItems = flexslider.querySelectorAll('.flex-control-paging a');
+            pagingItems.forEach((item, index) => {
+                item.classList.toggle('flex-active', index === currentSlide);
+            });
+        };
+
+        // Navigation event listeners
+        const prevBtn = flexslider.querySelector('.flex-prev');
+        const nextBtn = flexslider.querySelector('.flex-next');
+        
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                currentSlide = currentSlide > 0 ? currentSlide - 1 : slides.length - 1;
+                updateActiveStates();
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                currentSlide = currentSlide < slides.length - 1 ? currentSlide + 1 : 0;
+                updateActiveStates();
+            });
+        }
+
+        // Paging event listeners
+        flexslider.querySelectorAll('.flex-control-paging a').forEach((btn, index) => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                currentSlide = index;
+                updateActiveStates();
+            });
+        });
+
+        // Initialize active states
+        updateActiveStates();
     }
 }
 

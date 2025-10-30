@@ -37,6 +37,9 @@ VanillaJS.load(function() {
 // Document ready functionality
 VanillaJS.ready(function() {
     
+    // Failsafe: Ensure body scrolling is enabled on page load
+    document.body.style.overflow = '';
+    
     // Browser detection
     detectBrowser();
 

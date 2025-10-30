@@ -318,12 +318,10 @@ class SimpleLightbox {
         img.alt = link.getAttribute('title') || '';
         
         this.overlay.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
     }
     
     close() {
         this.overlay.style.display = 'none';
-        document.body.style.overflow = '';
     }
     
     prev() {

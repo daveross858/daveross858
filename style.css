@@ -95,14 +95,9 @@ body {
 	background: #ffffff;
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-size-adjust: 100%;
-	overflow-x: hidden;
 	position: relative;
 	left: 0;
 	transition: all .8s ease;
-}
-
-.active-slide {
-	left: 301px;
 }
 
 input,
@@ -159,7 +154,7 @@ p.lead {
 	letter-spacing: 0.1em;
 }
 
-a, a > * {
+a {
 	color: #470f0e;
 	text-decoration: none;
 }
@@ -309,6 +304,10 @@ input.placeholder, textarea.placeholder { color: #555555; }
 	color: rgba(255,255,255,0.8) !important;
 }
 
+.flex-direction-nav i a {
+	color: rgba(255,255,255,0.8) !important;
+}
+
 #preloader {
     position: fixed;
     top: 0;
@@ -359,6 +358,7 @@ input.placeholder, textarea.placeholder { color: #555555; }
 	font-size: 24px;
 	color: #ffffff;
 	text-align: center;
+	padding-top: 6px;
 }
 
 .section {
@@ -448,6 +448,7 @@ nav#main-nav ul li a {
 }
 
 .nav-trigger {
+	position: fixed;
 	top: 20px;
 	left: 20px;
 	width: 40px;
@@ -507,8 +508,6 @@ nav#main-nav ul li.current a i {
 
 .home {
 	height: auto;
-	overflow: hidden;
-	height: 700px;
 }
 
 .home .container-wrapper {
@@ -845,6 +844,19 @@ nav#main-nav ul li.current a i {
 	color: #ffffff !important;
 }
 
+/* Portfolio filter buttons (Tailwind-styled) */
+button[data-filter].active {
+	background-color: #470f0e !important;
+	color: #ffffff !important;
+	border-color: #470f0e !important;
+}
+
+button[data-filter]:not(.active) {
+	background-color: #ffffff;
+	color: #4b5563;
+	border: 1px solid #d1d5db;
+}
+
 .portfolio .portfolio-item {
 	float: left;
 	margin: 0px;
@@ -947,8 +959,19 @@ nav#main-nav ul li.current a i {
 }
 
 .extended-portfolio {
-	background: transparent;
-	overflow: hidden;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(71, 15, 14, 0.95);
+	z-index: 9999;
+	display: none;
+	overflow-y: auto;
+}
+
+.extended-portfolio.show {
+	display: block;
 }
 
 .project-loader {
@@ -970,12 +993,13 @@ nav#main-nav ul li.current a i {
 }
 
 .project-content {
-	opacity: 0;
-	height: 0px;
+	opacity: 1;
+	height: auto;
+	padding: 20px;
 }
 
 .project-navigation {
-	display: none;
+	display: block;
 	width: 100%;
 }
 
@@ -1021,8 +1045,9 @@ nav#main-nav ul li.current a i {
 	position: absolute;
 	top: 32px;
 	right: 32px;
-	display: none;
+	display: block;
 	height: 16px;
+	z-index: 10001;
 }
 
 .project-close a {
@@ -1151,8 +1176,78 @@ body.project-page #project-page .flex-control-paging li a.flex-active {
 	border: none;
 	border-radius: none;
 	box-shadow: none;
-	margin: 0px 0px 60px;
+	margin: 0 auto 60px auto;
 	position: relative;
+	max-width: 800px;
+	text-align: center;
+}
+
+.flex-direction-nav {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	pointer-events: none;
+	z-index: 100;
+}
+
+.flex-direction-nav a {
+	position: absolute;
+	top: -20px;
+	color: #ffffff !important;
+	font-size: 40px;
+	pointer-events: auto;
+	opacity: 0.8;
+	transition: opacity 0.3s ease;
+}
+
+.flex-direction-nav a:hover {
+	opacity: 1;
+}
+
+.flex-prev {
+	left: 20px;
+}
+
+.flex-next {
+	right: 20px;
+}
+
+.flex-control-paging {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 10px;
+}
+
+.flex-control-paging li {
+	list-style: none;
+}
+
+.flex-control-paging li a.flex-active {
+	background: #ffffff !important;
+}
+
+#project-page .flexslider ul.slides {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#project-page .flexslider ul.slides li {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+#project-page .flexslider ul.slides li img {
+	max-width: 100%;
+	height: auto;
+	display: inline-block;
+	margin: 0 auto;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+	border-radius: 8px;
 }
 
 .call-to-action h1 , .call-to-action h2, .call-to-action h3, .call-to-action h4, .call-to-action h5 {
@@ -1223,8 +1318,12 @@ p
 	background: transparent;
 }
 
-.contact-details, .contact-details a {
+.contact-details {
 	color: #fff;
+}
+
+.contact-details i.fa {
+	color: #470f0e !important;
 }
 
 .contact-details p {
@@ -1528,12 +1627,8 @@ body.mobile .animated {
 }
 
 .image-background {
-  background-image: url('../images/bg_big.jpg');
-  background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  min-height: 100vh;
 }
 
 html {
@@ -1549,15 +1644,7 @@ html {
   top: 6px;
 }
 
-.nav-trigger {
-  background: none;
-  border: none;
-  color: var(--white);
-  font-size: 1.25rem;
-  padding: 0.5rem;
-  cursor: pointer;
-  transition: var(--transition);
-}
+/* Removed conflicting nav-trigger rule */
 
 .nav-trigger:hover,
 .nav-trigger:focus {
@@ -1574,11 +1661,6 @@ html {
 .skills .animated {
   visibility: visible !important;
   opacity: 1 !important;
-}
-
-.skill_desc p.small {
-
-  font-size: 45px !important;
 }
 
 .chart {
@@ -1799,3 +1881,19 @@ html {
 	scroll-behavior: smooth;
 }
 
+/* Background Color Utilities */
+.bg-primary {
+	background-color: #470f0e !important;
+}
+
+.bg-primary-light {
+	background-color: rgba(71, 15, 14, 0.1) !important;
+}
+
+.bg-primary-dark {
+	background-color: #2a0908 !important;
+}
+
+.bg-primary-gradient {
+	background: linear-gradient(135deg, #470f0e 0%, #2a0908 100%) !important;
+}
