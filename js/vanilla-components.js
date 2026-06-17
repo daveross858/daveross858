@@ -87,7 +87,7 @@ class PieChart {
         this.options = {
             size: 160,
             animate: 2000,
-            lineWidth: 2,
+            lineWidth: 10,
             barColor: '#470f0e',
             trackColor: '#eeeeee',
             ...options
