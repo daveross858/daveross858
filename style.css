@@ -1702,8 +1702,8 @@ html {
 
   .skill-item,
   .contact-form {
-    background: var(--card-background);
-    color: var(--text-color);
+    /* background: var(--card-background);
+    color: var(--text-color); */
   }
 }
 
