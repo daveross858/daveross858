@@ -43,19 +43,20 @@ table {
 }
 
 :root {
-  --primary-color: #470f0e;
-  --secondary-color: #6b7280;
+  --primary-color: #6366f1;
+  --primary-dark:  #4f46e5;
+  --secondary-color: #64748b;
   --success-color: #10b981;
   --danger-color: #ef4444;
   --warning-color: #f59e0b;
   --info-color: #3b82f6;
-  --light-color: #f9fafb;
-  --dark-color: #1f2937;
+  --light-color: #f8fafc;
+  --dark-color: #0f172a;
   --white: #ffffff;
   --black: #000000;
 
-  --font-family-sans-serif: 'Open Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-family-serif: 'Lato', ui-serif, Georgia, Cambria, serif;
+  --font-family-sans-serif: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-serif: 'Inter', ui-serif, Georgia, Cambria, serif;
   --font-family-monospace: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --border-radius: 0.5rem;
@@ -90,8 +91,8 @@ table {
 
 body {
 	line-height: 1;
-	color: #494949;
-	font: 16px/32px "Open Sans", Helvetica, Arial, sans-serif;
+	color: #334155;
+	font: 16px/32px "Inter", Helvetica, Arial, sans-serif;
 	background: #ffffff;
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-size-adjust: 100%;
@@ -102,7 +103,7 @@ body {
 
 input,
 select,
-textarea { font: 16px/32px "Open Sans", Helvetica, Arial, sans-serif; }
+textarea { font: 16px/32px "Inter", Helvetica, Arial, sans-serif; }
 
 h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 10px;
@@ -155,7 +156,7 @@ p.lead {
 }
 
 a {
-	color: #470f0e;
+	color: #6366f1;
 	text-decoration: none;
 }
 
@@ -168,7 +169,7 @@ em {
 }
 
 strong {
-	color: #470f0e;
+	color: #4f46e5;
 	font-weight: 700;
 }
 
@@ -224,7 +225,7 @@ input:hover, textarea:hover, select:hover {
 
 input:focus, textarea:focus, select:focus {
 	color: #555555;
-	border: 1px solid #470f0e;
+	border: 1px solid #6366f1;
 }
 
 input[type="text"], input[type="email"] {
@@ -235,18 +236,18 @@ input[type="submit"], button {
 	width: auto;
 	font-style: normal;
 	background: transparent;
-	color: #470f0e;
+	color: #6366f1;
 	cursor: pointer;
-	border: 2px solid #470f0e;
+	border: 2px solid #6366f1;
 	border-radius: 5px;
 	padding: 10px 20px;
-	letter-spacing: 0.20em;
+	letter-spacing: 0.05em;
 }
 
 input[type="submit"]:hover, button:hover {
 	color: #ffffff !important;
-	background: #470f0e;
-	border: 2px solid #470f0e;
+	background: #6366f1;
+	border: 2px solid #6366f1;
 }
 
 select, option {
@@ -500,13 +501,13 @@ nav#main-nav ul li a i {
 
 nav#main-nav ul li a:hover,
 nav#main-nav ul li.current a {
-	color: #470f0e;
+	color: #6366f1;
 	text-decoration: none;
 }
 
 nav#main-nav ul li a:hover i,
 nav#main-nav ul li.current a i {
-	color: #470f0e;
+	color: #6366f1;
 }
 
 .home {
@@ -1894,17 +1895,17 @@ html {
 
 /* Background Color Utilities */
 .bg-primary {
-	background-color: #470f0e !important;
+	background-color: #6366f1 !important;
 }
 
 .bg-primary-light {
-	background-color: rgba(71, 15, 14, 0.1) !important;
+	background-color: rgba(99, 102, 241, 0.1) !important;
 }
 
 .bg-primary-dark {
-	background-color: #2a0908 !important;
+	background-color: #4f46e5 !important;
 }
 
 .bg-primary-gradient {
-	background: linear-gradient(135deg, #470f0e 0%, #2a0908 100%) !important;
+	background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
 }

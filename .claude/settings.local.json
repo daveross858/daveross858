@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "WebFetch(domain:www.linkedin.com)",
+      "Bash(git checkout *)",
+      "Bash(git add *)",
+      "Bash(brew list *)",
+      "WebFetch(domain:docs.google.com)",
+      "WebFetch(domain:doc-08-9k-docstext.googleusercontent.com)",
+      "Bash(git commit -m ' *)",
+      "Bash(git pull *)"
+    ]
+  }
+}
