@@ -88,7 +88,7 @@ VanillaJS.ready(function() {
                 VanillaJS.toggleClass(sidebar, 'active');
                 VanillaJS.toggleClass(this, 'active');
                 VanillaJS.toggleClass(document.body, 'active-slide');
-                this.setAttribute('aria-expanded', sidebar.classList.contains('active') ? 'true' : 'false');
+                this.setAttribute('aria-expanded', sidebar && sidebar.classList.contains('active') ? 'true' : 'false');
             });
         }
     }
