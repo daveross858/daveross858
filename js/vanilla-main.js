@@ -96,30 +96,39 @@ VanillaJS.ready(function() {
     /* NAVIGATION MENU */
     function initNavigation() {
         const sections = document.querySelectorAll('section.on-menu');
-        const navLinks = document.querySelectorAll('#main-nav ul li');
+        const navLinks = document.querySelectorAll('#main-nav .topnav-link');
         let currentLink = 0;
         
         // Navigation click handlers
-        navLinks.forEach((navItem, index) => {
-            const link = navItem.querySelector('a');
-            if (link) {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
+        navLinks.forEach((link, index) => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetSection = sections[index];
+                if (targetSection) {
+                    VanillaJS.smoothScrollTo(targetSection, 1000);
                     
-                    const targetSection = sections[index];
-                    if (targetSection) {
-                        VanillaJS.smoothScrollTo(targetSection, 1000);
-                        
-                        // Close sidebar after navigation
-                        const sidebar = document.getElementById('sidebar');
-                        const navTrigger = document.querySelector('.nav-trigger');
-                        VanillaJS.removeClass(sidebar, 'active');
-                        VanillaJS.removeClass(navTrigger, 'active');
-                        VanillaJS.removeClass(document.body, 'active-slide');
-                        if (navTrigger) navTrigger.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
+                    // Close sidebar after navigation
+                    const sidebar = document.getElementById('sidebar');
+                    const navTrigger = document.querySelector('.nav-trigger');
+                    VanillaJS.removeClass(sidebar, 'active');
+                    VanillaJS.removeClass(navTrigger, 'active');
+                    VanillaJS.removeClass(document.body, 'active-slide');
+                    if (navTrigger) navTrigger.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        // Mobile menu section link smooth scroll
+        const mobileNavLinks = document.querySelectorAll('#mobile-menu nav a[href^="#"]');
+        mobileNavLinks.forEach((link, index) => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetSection = sections[index];
+                if (targetSection) {
+                    VanillaJS.smoothScrollTo(targetSection, 1000);
+                }
+            });
         });
 
         // Scroll-based navigation highlighting (replacing waypoints)
