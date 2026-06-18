@@ -88,6 +88,7 @@ VanillaJS.ready(function() {
                 VanillaJS.toggleClass(sidebar, 'active');
                 VanillaJS.toggleClass(this, 'active');
                 VanillaJS.toggleClass(document.body, 'active-slide');
+                this.setAttribute('aria-expanded', sidebar.classList.contains('active') ? 'true' : 'false');
             });
         }
     }
@@ -115,6 +116,7 @@ VanillaJS.ready(function() {
                         VanillaJS.removeClass(sidebar, 'active');
                         VanillaJS.removeClass(navTrigger, 'active');
                         VanillaJS.removeClass(document.body, 'active-slide');
+                        if (navTrigger) navTrigger.setAttribute('aria-expanded', 'false');
                     }
                 });
             }
