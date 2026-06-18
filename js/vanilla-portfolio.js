@@ -41,7 +41,7 @@ class VanillaPortfolio {
     setupLayout() {
         // Setup container
         this.container.style.position = 'relative';
-        this.container.style.overflow = 'hidden';
+        this.container.style.overflow = 'visible';
         
         // Setup items
         this.items.forEach(item => {
