@@ -120,7 +120,7 @@ VanillaJS.ready(function() {
         });
 
         // Mobile menu section link smooth scroll
-        const mobileNavLinks = document.querySelectorAll('#mobile-menu nav a[href^="#"]');
+const mobileNavLinks = document.querySelectorAll('#mobile-menu nav a[href^="#"]:not([href="#"]):not([aria-disabled="true"])');
         mobileNavLinks.forEach((link, index) => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
