@@ -856,9 +856,9 @@ nav#main-nav ul li.current a i {
 
 /* Portfolio filter buttons (Tailwind-styled) */
 button[data-filter].active {
-	background-color: #470f0e !important;
+	background-color: #6366f1 !important;
 	color: #ffffff !important;
-	border-color: #470f0e !important;
+	border-color: #6366f1 !important;
 }
 
 button[data-filter]:not(.active) {
