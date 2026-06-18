@@ -891,9 +891,12 @@ button[data-filter]:not(.active) {
 	transition: box-shadow .25s ease, transform .25s ease;
 }
 
-.portfolio .portfolio-item a:hover {
+.portfolio .portfolio-item a:hover,
+.portfolio .portfolio-item a:focus-visible {
 	box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 	transform: translateY(-3px);
+	outline: 2px solid rgba(99,102,241,0.55);
+	outline-offset: 2px;
 }
 
 .portfolio .portfolio-item .project-container {
