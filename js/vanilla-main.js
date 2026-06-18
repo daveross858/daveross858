@@ -96,9 +96,7 @@ VanillaJS.ready(function() {
     /* NAVIGATION MENU */
     function initNavigation() {
 const sections = document.querySelectorAll('section.on-menu:not(#home)');
-        const navLinks = document.querySelectorAll('#main-nav .topnav-link');
-        let currentLink = 0;
-        
+        let currentLink = -1;
         // Navigation click handlers
         navLinks.forEach((link, index) => {
             link.addEventListener('click', function(e) {
