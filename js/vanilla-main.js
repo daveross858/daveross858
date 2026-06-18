@@ -107,13 +107,7 @@ VanillaJS.ready(function() {
                 if (targetSection) {
                     VanillaJS.smoothScrollTo(targetSection, 1000);
                     
-                    // Close sidebar after navigation
-                    const sidebar = document.getElementById('sidebar');
-                    const navTrigger = document.querySelector('.nav-trigger');
-                    VanillaJS.removeClass(sidebar, 'active');
-                    VanillaJS.removeClass(navTrigger, 'active');
-                    VanillaJS.removeClass(document.body, 'active-slide');
-                    if (navTrigger) navTrigger.setAttribute('aria-expanded', 'false');
+                    // No sidebar to close in the current layout.
                 }
             });
         });
