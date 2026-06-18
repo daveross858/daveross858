@@ -876,7 +876,7 @@ button[data-filter]:not(.active) {
 .portfolio .portfolio-item {
 	float: left;
 	margin: 0px;
-	overflow: hidden;
+	display: flow-root;
 }
 
 .portfolio .portfolio-item a {

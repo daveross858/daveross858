@@ -95,7 +95,8 @@ VanillaJS.ready(function() {
 
     /* NAVIGATION MENU */
     function initNavigation() {
-const sections = document.querySelectorAll('section.on-menu:not(#home)');
+        const navLinks = document.querySelectorAll('#main-nav .topnav-link');
+        const sections = document.querySelectorAll('section.on-menu:not(#home)');
         let currentLink = -1;
         // Navigation click handlers
         navLinks.forEach((link, index) => {
@@ -118,7 +119,7 @@ const sections = document.querySelectorAll('section.on-menu:not(#home)');
         });
 
         // Mobile menu section link smooth scroll
-const mobileNavLinks = document.querySelectorAll('#mobile-menu nav a[href^="#"]:not([href="#"]):not([aria-disabled="true"])');
+        const mobileNavLinks = document.querySelectorAll('#mobile-menu nav a[href^="#"]:not([href="#"]):not([aria-disabled="true"])');
         mobileNavLinks.forEach((link, index) => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
