@@ -510,6 +510,12 @@ nav#main-nav ul li.current a i {
 	color: #6366f1;
 }
 
+#main-nav .topnav-link:hover,
+#main-nav .topnav-link.current {
+	color: #fff !important;
+	text-decoration: none;
+}
+
 .home {
 	height: auto;
 }
@@ -870,7 +876,7 @@ button[data-filter]:not(.active) {
 .portfolio .portfolio-item {
 	float: left;
 	margin: 0px;
-	overflow: hidden;
+	display: flow-root;
 }
 
 .portfolio .portfolio-item a {
