@@ -820,8 +820,8 @@ nav#main-nav ul li.current a i {
 
 .portfolio-container .container {
 	margin: auto;
-	max-width: 100% !important;
-	width: 100% !important;
+	max-width: 100%;
+	width: 100%;
 }
 
 .portfolio {
