@@ -146,11 +146,19 @@
 				<a href="#home" class="site-logo">DR</a>
 
 				<!-- Desktop nav (hidden on mobile) -->
+<<<<<<< Updated upstream
 				<nav id="main-nav" aria-label="Main navigation">
 					<a href="#about"     class="topnav-link">About</a>
 					<a href="#skills"    class="topnav-link">Skills</a>
 					<a href="#portfolio" class="topnav-link">Work</a>
 					<a href="#contact"   class="topnav-link">Contact</a>
+=======
+				<nav id="main-nav" aria-label="Main navigation" style="display:flex;gap:2rem;align-items:center;">
+					<a href="#about"     class="topnav-link" style="color:#94a3b8;font-size:.875rem;font-weight:500;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">About</a>
+					<a href="#skills"    class="topnav-link" style="color:#94a3b8;font-size:.875rem;font-weight:500;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Skills</a>
+					<a href="#case-studies" class="topnav-link" style="color:#94a3b8;font-size:.875rem;font-weight:500;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Work</a>
+					<a href="#contact"   class="topnav-link" style="color:#94a3b8;font-size:.875rem;font-weight:500;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Contact</a>
+>>>>>>> Stashed changes
 				</nav>
 
 				<!-- Right side -->
@@ -168,6 +176,7 @@
 			</div>
 
 			<!-- Mobile dropdown -->
+<<<<<<< Updated upstream
 			<div id="mobile-menu">
 				<nav aria-label="Mobile navigation">
 					<a href="#about">About</a>
@@ -175,6 +184,15 @@
 					<a href="#portfolio">Work</a>
 					<a href="#contact">Contact</a>
 					<a href="#" aria-disabled="true" tabindex="-1" onclick="event.preventDefault();">Download résumé ↓</a>
+=======
+			<div id="mobile-menu" style="display:none;background:rgba(15,23,42,0.98);border-top:1px solid rgba(255,255,255,0.08);padding:1rem 1.5rem 1.25rem;">
+				<nav style="display:flex;flex-direction:column;gap:1rem;" aria-label="Mobile navigation">
+					<a href="#about"     style="color:#94a3b8;font-size:.9rem;font-weight:500;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">About</a>
+					<a href="#skills"    style="color:#94a3b8;font-size:.9rem;font-weight:500;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Skills</a>
+					<a href="#case-studies" style="color:#94a3b8;font-size:.9rem;font-weight:500;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Work</a>
+					<a href="#contact"   style="color:#94a3b8;font-size:.9rem;font-weight:500;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Contact</a>
+					<a href="David_Ross_Resume_Anthropic.docx" style="color:#a5b4fc;font-size:.9rem;font-weight:500;text-decoration:none;" onmouseover="this.style.color='#818cf8'" onmouseout="this.style.color='#a5b4fc'">Download résumé ↓</a>
+>>>>>>> Stashed changes
 				</nav>
 			</div>
 		</header>
@@ -211,21 +229,28 @@
 				<!-- Avatar -->
 				<div style="margin-bottom:1.75rem;">
 					<img src="images/me.png" alt="Portrait of David Ross"
-						style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto;display:block;border:3px solid rgba(99,102,241,0.5);box-shadow:0 0 0 6px rgba(99,102,241,0.08);">
+						style="width:200px;height:200px;border-radius:50%;object-fit:cover;margin:0 auto;display:block;border:3px solid rgba(99,102,241,0.5);box-shadow:0 0 0 8px rgba(99,102,241,0.1),0 20px 60px rgba(0,0,0,0.4);">
 				</div>
 
 				<!-- Name -->
-				<h1 style="font-size:clamp(2.25rem,5vw,3.5rem);font-weight:700;color:#f8fafc;letter-spacing:-0.02em;line-height:1.1;margin-bottom:1rem;">David W. Ross</h1>
+				<h1 style="font-size:clamp(2.25rem,5vw,3.5rem);font-weight:700;color:#f8fafc;letter-spacing:-0.02em;line-height:1.1;margin-bottom:.75rem;">David W. Ross</h1>
 
-				<!-- Roles -->
-				<p style="font-size:1.1rem;color:#94a3b8;font-weight:400;line-height:1.6;margin-bottom:2rem;">
-					UI Software Engineer &nbsp;·&nbsp; UX Engineering Lead &nbsp;·&nbsp; Design Systems Architect<br>
-					<span style="font-size:.95rem;color:#64748b;">San Francisco Bay Area</span>
+				<!-- Positioning statement -->
+				<p style="font-size:clamp(1rem,2vw,1.2rem);color:#c7d2fe;font-weight:500;line-height:1.5;margin-bottom:1.25rem;max-width:560px;margin-left:auto;margin-right:auto;">I close the gap between design and engineering — and build the teams that keep it closed.</p>
+
+				<!-- Roles + location -->
+				<p style="font-size:.95rem;color:#64748b;font-weight:400;line-height:1.6;margin-bottom:.75rem;">
+					UI/UX Engineering Lead &nbsp;·&nbsp; Design Systems &nbsp;·&nbsp; Full-Stack Product
+				</p>
+				<p style="font-size:.85rem;margin-bottom:2rem;">
+					<span style="color:#64748b;">San Francisco Bay Area</span>
+					<span style="color:#374151;">&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+					<span style="color:#6366f1;font-weight:500;">Open to Senior UX / Product Design Lead roles — Bay Area or remote</span>
 				</p>
 
 				<!-- CTA buttons -->
 				<div style="display:flex;gap:.875rem;justify-content:center;flex-wrap:wrap;">
-					<a href="#portfolio"
+					<a href="#case-studies"
 						style="display:inline-flex;align-items:center;gap:.5rem;background:#6366f1;color:#fff;font-weight:600;font-size:.9rem;padding:.75rem 1.75rem;border-radius:.5rem;text-decoration:none;transition:background .2s,transform .15s;"
 						onmouseover="this.style.background='#4f46e5';this.style.transform='translateY(-1px)'"
 						onmouseout="this.style.background='#6366f1';this.style.transform='translateY(0)'">
@@ -261,90 +286,36 @@
 						<!-- START TITLE -->
 						<h1 class="text-4xl font-bold mb-4 text-gray-900 uppercase font-light relative">About Me</h1><!-- END TITLE -->
 						<div class="w-16 h-1 bg-primary mx-auto mb-8"></div>
-						<p class="text-lg text-gray-700 leading-relaxed mb-4">Growing up with learning disabilities taught me early that the way something is designed can be the difference between someone succeeding or being left behind. That experience shaped everything &mdash; my drive to push through obstacles, my instinct to bridge gaps others walk past, and my deep belief that great design should work for everyone.</p>
-						<p class="text-lg text-gray-700 leading-relaxed mb-4">Over 15 years at the intersection of design and engineering, I&rsquo;ve put that belief into practice &mdash; most recently at Thermo Fisher Scientific, where I identified a gap between design and development teams, advocated for a new kind of role, and built it into a dedicated UI engineering team from the ground up. I bring fluency in both disciplines: React, TypeScript, Next.js, and Node.js on the engineering side; systems thinking, user research, and accessibility expertise on the design side.</p>
-						<p class="text-lg text-gray-700 leading-relaxed">I&rsquo;m drawn to AI products at the frontier because the design decisions being made right now will shape how millions of people experience technology for the first time. That&rsquo;s the kind of problem I was built for.</p>
+						<p class="text-lg text-gray-700 leading-relaxed mb-4">I build products and the teams that ship them. At Thermo Fisher Scientific, I saw a gap between design and engineering, made the case to leadership, and founded the UI/UX Engineering team from scratch. I then designed and built the AEM component library that became the standard across two of the largest life sciences e-commerce sites in the world &mdash; driving 100% adoption across 900+ internal teams and external agencies.</p>
+						<p class="text-lg text-gray-700 leading-relaxed mb-4">My edge is that I work the full stack. I&rsquo;ve written the code, managed the release, led the design, and aligned the stakeholders &mdash; sometimes on the same project. That fluency across disciplines means I can move faster, make sharper technical tradeoffs, and close the gap between what design intends and what engineering ships.</p>
+						<p class="text-lg text-gray-700 leading-relaxed">Growing up with learning disabilities gave me an early, instinctive belief that the way something is designed can be the difference between someone succeeding or being left behind. It shapes how I approach accessibility, how I think about the user who isn&rsquo;t like me, and why I&rsquo;m drawn to AI products at the frontier &mdash; where the design decisions being made right now will define how millions of people experience technology for the first time.</p>
 					</div><!-- END CONTENT -->
 				</div><!-- END CENTER -->
 			</div><!-- END CONTAINER -->
 		</section>
 		<!-- END ABOUT SECTION -->
 		
+<<<<<<< Updated upstream
 		<!-- START SKILLS SECTION -->
 		<section id="skills" class="on-menu" style="background:#f8fafc;padding:5rem 1.5rem;">
+=======
+		<!-- START EXPERTISE STRIP -->
+		<section id="skills" style="background:#f8fafc;padding:2.5rem 1.5rem;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;">
+>>>>>>> Stashed changes
 			<div style="max-width:900px;margin:0 auto;">
-
-				<!-- Section header -->
-				<div style="text-align:center;margin-bottom:3rem;">
-					<h2 style="font-size:2rem;font-weight:700;color:#0f172a;letter-spacing:-0.02em;margin-bottom:.5rem;">Skills</h2>
-					<p style="color:#64748b;font-size:1rem;">Design thinking meets engineering execution — a rare combination.</p>
+				<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1.5rem;">
+					<span style="font-size:.75rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap;">What I work with</span>
+					<div style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;">
+						<span class="skill-chip">React &amp; TypeScript</span>
+						<span class="skill-chip">AEM</span>
+						<span class="skill-chip">Design Systems</span>
+						<span class="skill-chip">Figma</span>
+						<span class="skill-chip">Accessibility / WCAG</span>
+						<span class="skill-chip">User Research</span>
+						<span class="skill-chip">AI Product Design</span>
+						<span class="skill-chip">Team Leadership</span>
+					</div>
 				</div>
-
-				<!-- Skill groups -->
-				<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;">
-
-					<!-- Engineering -->
-					<div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;">
-						<div style="display:flex;align-items:center;gap:.625rem;margin-bottom:1rem;">
-							<span style="width:28px;height:28px;background:#eef2ff;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;">
-								<i class="fa fa-code" style="color:#6366f1;font-size:.8rem;" aria-hidden="true"></i>
-							</span>
-							<h3 style="font-size:.875rem;font-weight:600;color:#0f172a;letter-spacing:.04em;text-transform:uppercase;">Engineering</h3>
-						</div>
-						<div style="display:flex;flex-wrap:wrap;gap:.5rem;">
-							<span class="skill-chip">React</span>
-							<span class="skill-chip">TypeScript</span>
-							<span class="skill-chip">Next.js</span>
-							<span class="skill-chip">Node.js</span>
-							<span class="skill-chip">JavaScript (ES6+)</span>
-							<span class="skill-chip">HTML5 / CSS3</span>
-							<span class="skill-chip">Bootstrap 5</span>
-							<span class="skill-chip">Web Components</span>
-							<span class="skill-chip">AEM</span>
-						</div>
-					</div>
-
-					<!-- Design -->
-					<div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;">
-						<div style="display:flex;align-items:center;gap:.625rem;margin-bottom:1rem;">
-							<span style="width:28px;height:28px;background:#eef2ff;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;">
-								<i class="fa fa-pen-ruler" style="color:#6366f1;font-size:.8rem;" aria-hidden="true"></i>
-							</span>
-							<h3 style="font-size:.875rem;font-weight:600;color:#0f172a;letter-spacing:.04em;text-transform:uppercase;">Design</h3>
-						</div>
-						<div style="display:flex;flex-wrap:wrap;gap:.5rem;">
-							<span class="skill-chip">Figma</span>
-							<span class="skill-chip">Design Systems</span>
-							<span class="skill-chip">WCAG / ADA</span>
-							<span class="skill-chip">Accessibility</span>
-							<span class="skill-chip">User Research</span>
-							<span class="skill-chip">Usability Testing</span>
-							<span class="skill-chip">Prototyping</span>
-							<span class="skill-chip">Adobe CC</span>
-							<span class="skill-chip">Sketch</span>
-						</div>
-					</div>
-
-					<!-- Process -->
-					<div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;">
-						<div style="display:flex;align-items:center;gap:.625rem;margin-bottom:1rem;">
-							<span style="width:28px;height:28px;background:#eef2ff;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;">
-								<i class="fa fa-people-group" style="color:#6366f1;font-size:.8rem;" aria-hidden="true"></i>
-							</span>
-							<h3 style="font-size:.875rem;font-weight:600;color:#0f172a;letter-spacing:.04em;text-transform:uppercase;">Process &amp; Leadership</h3>
-						</div>
-						<div style="display:flex;flex-wrap:wrap;gap:.5rem;">
-							<span class="skill-chip">Agile / Scrum</span>
-							<span class="skill-chip">Lean UX</span>
-							<span class="skill-chip">Jira</span>
-							<span class="skill-chip">Team Leadership</span>
-							<span class="skill-chip">Cross-functional</span>
-							<span class="skill-chip">SEO</span>
-							<span class="skill-chip">AI Product Design</span>
-						</div>
-					</div>
-
-				</div><!-- END GRID -->
 			</div>
 		</section>
 		<style>
@@ -353,10 +324,10 @@
 				font-size: .8rem;
 				font-weight: 500;
 				color: #475569;
-				background: #f1f5f9;
+				background: #fff;
 				border: 1px solid #e2e8f0;
 				border-radius: 9999px;
-				padding: 4px 12px;
+				padding: 4px 14px;
 				transition: background .15s, color .15s, border-color .15s;
 			}
 			.skill-chip:hover {
@@ -365,8 +336,95 @@
 				border-color: #c7d2fe;
 			}
 		</style>
-		<!-- END SKILLS SECTION -->
+		<!-- END EXPERTISE STRIP -->
 		
+		<!-- FEATURED CASE STUDIES -->
+		<section id="case-studies" style="background:#0f172a;padding:5rem 1.5rem;">
+			<div style="max-width:1100px;margin:0 auto;">
+				<div style="text-align:center;margin-bottom:3rem;">
+					<p style="font-size:.75rem;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem;">Featured Work</p>
+					<h2 style="font-size:2rem;font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:.5rem;">Case Studies</h2>
+					<p style="color:#94a3b8;font-size:1rem;max-width:520px;margin:0 auto;">Deep dives into the enterprise-scale projects that shaped my approach to design systems, cross-team leadership, and shipping at scale.</p>
+				</div>
+				<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;">
+
+					<!-- Case Study 1 -->
+					<a href="projects/thermofisher-design-system.html" style="text-decoration:none;display:block;background:#1e293b;border:1px solid rgba(255,255,255,0.08);border-radius:.875rem;padding:2rem;transition:border-color .2s,transform .2s;" onmouseover="this.style.borderColor='#6366f1';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='translateY(0)'">
+						<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;">
+							<span style="font-size:.7rem;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:.08em;background:rgba(99,102,241,0.15);padding:.3rem .75rem;border-radius:999px;">Design System</span>
+							<i class="fa fa-arrow-right" style="color:#4b5563;font-size:.8rem;"></i>
+						</div>
+						<h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:.6rem;line-height:1.3;">ThermoFisher Design System</h3>
+						<p style="font-size:.875rem;color:#94a3b8;line-height:1.65;margin-bottom:1.5rem;">Founded the UI/UX Engineering team, designed and built the AEM component library, and drove 100% adoption across 900+ internal teams and external agencies.</p>
+						<div style="display:flex;gap:1.25rem;border-top:1px solid rgba(255,255,255,0.06);padding-top:1.25rem;">
+							<div>
+								<span style="display:block;font-size:1.25rem;font-weight:700;color:#6366f1;line-height:1;">900+</span>
+								<span style="font-size:.7rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;">Teams adopted</span>
+							</div>
+							<div>
+								<span style="display:block;font-size:1.25rem;font-weight:700;color:#6366f1;line-height:1;">2</span>
+								<span style="font-size:.7rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;">Enterprise sites</span>
+							</div>
+							<div>
+								<span style="display:block;font-size:1.25rem;font-weight:700;color:#6366f1;line-height:1;">100%</span>
+								<span style="font-size:.7rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;">Adoption rate</span>
+							</div>
+						</div>
+					</a>
+
+					<!-- Case Study 2 -->
+					<a href="projects/thermofisher-header-footer.html" style="text-decoration:none;display:block;background:#1e293b;border:1px solid rgba(255,255,255,0.08);border-radius:.875rem;padding:2rem;transition:border-color .2s,transform .2s;" onmouseover="this.style.borderColor='#6366f1';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='translateY(0)'">
+						<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;">
+							<span style="font-size:.7rem;font-weight:700;color:#8b5cf6;text-transform:uppercase;letter-spacing:.08em;background:rgba(139,92,246,0.15);padding:.3rem .75rem;border-radius:999px;">Navigation · Accessibility</span>
+							<i class="fa fa-arrow-right" style="color:#4b5563;font-size:.8rem;"></i>
+						</div>
+						<h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:.6rem;line-height:1.3;">Header &amp; Footer Revamp</h3>
+						<p style="font-size:.875rem;color:#94a3b8;line-height:1.65;margin-bottom:1.5rem;">Redesigned global navigation across both enterprise sites — new nav structure, mega-menu, mobile patterns, and WCAG 2.1 accessibility compliance. Wrote all the code, managed the release.</p>
+						<div style="display:flex;gap:1.25rem;border-top:1px solid rgba(255,255,255,0.06);padding-top:1.25rem;">
+							<div>
+								<span style="display:block;font-size:1.25rem;font-weight:700;color:#8b5cf6;line-height:1;">2</span>
+								<span style="font-size:.7rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;">Sites updated</span>
+							</div>
+							<div>
+								<span style="display:block;font-size:1.25rem;font-weight:700;color:#8b5cf6;line-height:1;">WCAG</span>
+								<span style="font-size:.7rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;">Compliant</span>
+							</div>
+							<div>
+								<span style="display:block;font-size:1.25rem;font-weight:700;color:#8b5cf6;line-height:1;">↓</span>
+								<span style="font-size:.7rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;">Nav support tickets</span>
+							</div>
+						</div>
+					</a>
+
+					<!-- Case Study 3 -->
+					<a href="projects/thermofisher-homepage.html" style="text-decoration:none;display:block;background:#1e293b;border:1px solid rgba(255,255,255,0.08);border-radius:.875rem;padding:2rem;transition:border-color .2s,transform .2s;" onmouseover="this.style.borderColor='#6366f1';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='translateY(0)'">
+						<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;">
+							<span style="font-size:.7rem;font-weight:700;color:#0ea5e9;text-transform:uppercase;letter-spacing:.08em;background:rgba(14,165,233,0.15);padding:.3rem .75rem;border-radius:999px;">Homepage · Release</span>
+							<i class="fa fa-arrow-right" style="color:#4b5563;font-size:.8rem;"></i>
+						</div>
+						<h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:.6rem;line-height:1.3;">Homepage Redesign</h3>
+						<p style="font-size:.875rem;color:#94a3b8;line-height:1.65;margin-bottom:1.5rem;">Led AEM engineering, stakeholder alignment across 6 groups, and production release for the homepage redesign of both major sites. Shipped on schedule with zero incidents.</p>
+						<div style="display:flex;gap:1.25rem;border-top:1px solid rgba(255,255,255,0.06);padding-top:1.25rem;">
+							<div>
+								<span style="display:block;font-size:1.25rem;font-weight:700;color:#0ea5e9;line-height:1;">0</span>
+								<span style="font-size:.7rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;">Launch incidents</span>
+							</div>
+							<div>
+								<span style="display:block;font-size:1.25rem;font-weight:700;color:#0ea5e9;line-height:1;">2</span>
+								<span style="font-size:.7rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;">Homepages shipped</span>
+							</div>
+							<div>
+								<span style="display:block;font-size:1.25rem;font-weight:700;color:#0ea5e9;line-height:1;">↑</span>
+								<span style="font-size:.7rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;">Page performance</span>
+							</div>
+						</div>
+					</a>
+
+				</div>
+			</div>
+		</section>
+		<!-- END FEATURED CASE STUDIES -->
+
 		<!-- START PORTFOLIO SECTION -->
 		<section id="portfolio" class="portfolio-section section on-menu" style="padding:5rem 0 0;background:#fff;">
 			<div style="max-width:1100px;margin:0 auto;padding:0 1.5rem;">
@@ -374,11 +432,10 @@
 					<h2 style="font-size:2rem;font-weight:700;color:#0f172a;letter-spacing:-0.02em;margin-bottom:.5rem;">Recent work</h2>
 					<p style="color:#64748b;font-size:1rem;margin-bottom:1.75rem;">A selection of projects spanning UX design, UI engineering, and product strategy.</p>
 					<nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:.625rem;" aria-label="Portfolio filter">
-						<button class="filter-btn active" data-filter="*"         style="font-size:.8rem;font-weight:500;padding:6px 16px;border-radius:9999px;border:1px solid #e2e8f0;background:#6366f1;color:#fff;cursor:pointer;transition:all .2s;">All</button>
-						<button class="filter-btn"        data-filter=".web-design" style="font-size:.8rem;font-weight:500;padding:6px 16px;border-radius:9999px;border:1px solid #e2e8f0;background:#fff;color:#475569;cursor:pointer;transition:all .2s;">Web Design</button>
-						<button class="filter-btn"        data-filter=".ui"         style="font-size:.8rem;font-weight:500;padding:6px 16px;border-radius:9999px;border:1px solid #e2e8f0;background:#fff;color:#475569;cursor:pointer;transition:all .2s;">UI Design</button>
-						<button class="filter-btn"        data-filter=".ux"         style="font-size:.8rem;font-weight:500;padding:6px 16px;border-radius:9999px;border:1px solid #e2e8f0;background:#fff;color:#475569;cursor:pointer;transition:all .2s;">UX Design</button>
-						<button class="filter-btn"        data-filter=".pm"         style="font-size:.8rem;font-weight:500;padding:6px 16px;border-radius:9999px;border:1px solid #e2e8f0;background:#fff;color:#475569;cursor:pointer;transition:all .2s;">Product</button>
+						<button class="filter-btn active" data-filter="*"    style="font-size:.8rem;font-weight:500;padding:6px 16px;border-radius:9999px;border:1px solid #e2e8f0;background:#6366f1;color:#fff;cursor:pointer;transition:all .2s;">All work</button>
+						<button class="filter-btn"        data-filter=".ux"  style="font-size:.8rem;font-weight:500;padding:6px 16px;border-radius:9999px;border:1px solid #e2e8f0;background:#fff;color:#475569;cursor:pointer;transition:all .2s;">Product Design</button>
+						<button class="filter-btn"        data-filter=".ui"  style="font-size:.8rem;font-weight:500;padding:6px 16px;border-radius:9999px;border:1px solid #e2e8f0;background:#fff;color:#475569;cursor:pointer;transition:all .2s;">UI Engineering</button>
+						<button class="filter-btn"        data-filter=".pm"  style="font-size:.8rem;font-weight:500;padding:6px 16px;border-radius:9999px;border:1px solid #e2e8f0;background:#fff;color:#475569;cursor:pointer;transition:all .2s;">Product Strategy</button>
 					</nav>
 				</div>
 			</div>
