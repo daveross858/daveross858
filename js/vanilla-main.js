@@ -95,31 +95,40 @@ VanillaJS.ready(function() {
 
     /* NAVIGATION MENU */
     function initNavigation() {
-        const sections = document.querySelectorAll('section.on-menu');
-        const navLinks = document.querySelectorAll('#main-nav ul li');
-        let currentLink = 0;
-        
+        const navLinks = document.querySelectorAll('#main-nav .topnav-link');
+        const sections = document.querySelectorAll('section.on-menu:not(#home)');
+        let currentLink = -1;
         // Navigation click handlers
-        navLinks.forEach((navItem, index) => {
-            const link = navItem.querySelector('a');
-            if (link) {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetSection = sections[index];
-                    if (targetSection) {
-                        VanillaJS.smoothScrollTo(targetSection, 1000);
-                        
-                        // Close sidebar after navigation
-                        const sidebar = document.getElementById('sidebar');
-                        const navTrigger = document.querySelector('.nav-trigger');
-                        VanillaJS.removeClass(sidebar, 'active');
-                        VanillaJS.removeClass(navTrigger, 'active');
-                        VanillaJS.removeClass(document.body, 'active-slide');
-                        if (navTrigger) navTrigger.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
+        navLinks.forEach((link, index) => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetSection = sections[index];
+                if (targetSection) {
+                    const header = document.getElementById('site-header');
+                    const offset = header ? header.offsetHeight : 0;
+                    const top = Math.max(0, targetSection.getBoundingClientRect().top + window.pageYOffset - offset);
+                    VanillaJS.animate(document.documentElement, { scrollTop: top }, 1000);
+                    VanillaJS.animate(document.body, { scrollTop: top }, 1000);
+                }
+            });
+        });
+
+        // Mobile menu section link smooth scroll
+        const mobileNavLinks = document.querySelectorAll('#mobile-menu nav a[href^="#"]:not([href="#"]):not([aria-disabled="true"])');
+        mobileNavLinks.forEach((link, index) => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetSection = sections[index];
+                if (targetSection) {
+                    const header = document.getElementById('site-header');
+                    const offset = header ? header.offsetHeight : 0;
+                    const top = Math.max(0, targetSection.getBoundingClientRect().top + window.pageYOffset - offset);
+
+                    VanillaJS.animate(document.documentElement, { scrollTop: top }, 1000);
+                    VanillaJS.animate(document.body, { scrollTop: top }, 1000);
+                }
+            });
         });
 
         // Scroll-based navigation highlighting (replacing waypoints)

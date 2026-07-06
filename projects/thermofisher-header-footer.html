@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThermoFisher Header & Footer Revamp — David W. Ross</title>
+  <meta name="description" content="How I redesigned the global header and footer across thermofisher.com and fishersci.com — improving navigation, accessibility, and mobile patterns for millions of users.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --indigo: #6366f1;
+      --indigo-dark: #4f46e5;
+      --indigo-light: #eef2ff;
+      --slate-900: #0f172a;
+      --slate-700: #334155;
+      --slate-500: #64748b;
+      --slate-300: #cbd5e1;
+      --slate-100: #f1f5f9;
+      --white: #ffffff;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--slate-700); background: var(--white); line-height: 1.6; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(15,23,42,0.97); backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;
+    }
+    .nav-back { display: flex; align-items: center; gap: .5rem; color: rgba(255,255,255,0.7); text-decoration: none; font-size: .875rem; font-weight: 500; transition: color .2s; }
+    .nav-back:hover { color: var(--white); }
+    .nav-logo { color: var(--white); font-weight: 700; font-size: 1rem; text-decoration: none; }
+    .nav-cta { background: var(--indigo); color: var(--white); padding: .45rem 1.1rem; border-radius: .375rem; font-size: .8rem; font-weight: 600; text-decoration: none; transition: background .2s; }
+    .nav-cta:hover { background: var(--indigo-dark); }
+
+    /* ── HERO ── */
+    .case-hero { background: var(--slate-900); padding: 7rem 1.5rem 4rem; text-align: center; }
+    .case-hero .breadcrumb { color: var(--indigo); font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 1rem; }
+    .case-hero h1 { font-size: clamp(1.85rem, 4vw, 2.75rem); font-weight: 700; color: var(--white); line-height: 1.15; max-width: 820px; margin: 0 auto 1rem; }
+    .case-hero .subtitle { color: #94a3b8; font-size: 1.05rem; max-width: 580px; margin: 0 auto 2.5rem; }
+
+    .stats-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2.5rem; }
+    .stat { text-align: center; }
+    .stat-num { display: block; font-size: 2rem; font-weight: 700; color: var(--indigo); line-height: 1; }
+    .stat-label { font-size: .78rem; color: #64748b; text-transform: uppercase; letter-spacing: .06em; margin-top: .3rem; }
+
+    /* ── COMPARISON STRIP ── */
+    .comparison-strip { background: var(--slate-100); padding: 3rem 1.5rem; text-align: center; }
+    .comparison-strip .label { font-size: .8rem; color: var(--slate-500); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 1.5rem; font-weight: 600; }
+    .comparison-img { max-width: 1100px; width: 100%; border-radius: .75rem; box-shadow: 0 4px 24px rgba(0,0,0,.12); border: 1px solid var(--slate-300); }
+
+    /* ── BODY ── */
+    .case-body { max-width: 780px; margin: 0 auto; padding: 4rem 1.5rem; }
+    .section-label { font-size: .72rem; font-weight: 700; color: var(--indigo); text-transform: uppercase; letter-spacing: .1em; margin-bottom: .75rem; }
+    h2 { font-size: 1.5rem; font-weight: 700; color: var(--slate-900); margin-bottom: 1rem; }
+    p { margin-bottom: 1.25rem; font-size: 1rem; line-height: 1.75; }
+    p:last-child { margin-bottom: 0; }
+    .case-section { margin-bottom: 3.5rem; }
+    hr { border: none; border-top: 1px solid var(--slate-100); margin: 3.5rem 0; }
+
+    blockquote { border-left: 3px solid var(--indigo); margin: 2rem 0; padding: .75rem 1.5rem; background: var(--indigo-light); border-radius: 0 .5rem .5rem 0; }
+    blockquote p { font-size: 1.1rem; font-style: italic; color: var(--slate-900); font-weight: 500; margin: 0; }
+
+    /* Role card */
+    .role-card { background: var(--slate-900); color: var(--white); border-radius: .75rem; padding: 1.75rem 2rem; margin: 2rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .role-item strong { display: block; font-size: .72rem; font-weight: 700; color: var(--indigo); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .35rem; }
+    .role-item span { font-size: .9rem; color: #cbd5e1; line-height: 1.4; }
+
+    /* Challenge cards */
+    .challenge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .challenge-card { background: var(--slate-100); border-radius: .75rem; padding: 1.25rem; border-left: 3px solid var(--indigo); }
+    .challenge-card strong { display: block; font-size: .85rem; font-weight: 600; color: var(--slate-900); margin-bottom: .4rem; }
+    .challenge-card p { font-size: .85rem; color: var(--slate-500); margin: 0; line-height: 1.5; }
+
+    /* Deliverables list */
+    .deliverables { list-style: none; margin: 1.5rem 0; display: flex; flex-direction: column; gap: .6rem; }
+    .deliverables li { display: flex; align-items: flex-start; gap: .75rem; font-size: .95rem; }
+    .deliverables li::before { content: ""; width: 20px; height: 20px; border-radius: 50%; background: var(--indigo-light); flex-shrink: 0; margin-top: .1rem; display: flex; align-items: center; justify-content: center; }
+    .check-icon { color: var(--indigo); font-size: .7rem; }
+
+    /* Outcomes */
+    .outcomes { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .outcome-chip { background: var(--indigo-light); border-radius: .75rem; padding: 1.25rem; text-align: center; }
+    .outcome-chip .num { font-size: 1.5rem; font-weight: 700; color: var(--indigo); display: block; line-height: 1; }
+    .outcome-chip .label { font-size: .8rem; color: var(--slate-700); margin-top: .4rem; display: block; }
+
+    /* Tags */
+    .tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+    .tag { font-size: .72rem; font-weight: 600; padding: .25rem .7rem; border-radius: 999px; text-transform: uppercase; letter-spacing: .04em; }
+    .tag-blue { background: #dbeafe; color: #1d4ed8; }
+    .tag-purple { background: #ede9fe; color: #5b21b6; }
+    .tag-green { background: #d1fae5; color: #065f46; }
+    .tag-orange { background: #ffedd5; color: #9a3412; }
+    .tag-red { background: #fee2e2; color: #b91c1c; }
+
+    /* Connected project callout */
+    .connected { background: var(--slate-900); border-radius: .75rem; padding: 1.5rem 2rem; margin: 2rem 0; display: flex; align-items: center; gap: 1.5rem; }
+    .connected-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--indigo); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .connected-text strong { display: block; color: var(--white); font-size: .9rem; font-weight: 600; margin-bottom: .2rem; }
+    .connected-text span { color: #94a3b8; font-size: .82rem; }
+    .connected-link { margin-left: auto; color: var(--indigo); font-size: .8rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+    .connected-link:hover { text-decoration: underline; }
+
+    /* Process steps */
+    .process-steps { display: flex; flex-direction: column; gap: 0; margin: 2rem 0; }
+    .step { display: flex; gap: 1.25rem; padding: 1.25rem 0; border-bottom: 1px solid var(--slate-100); }
+    .step:last-child { border-bottom: none; }
+    .step-num { width: 36px; height: 36px; border-radius: 50%; background: var(--indigo-light); color: var(--indigo); font-weight: 700; font-size: .85rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: .1rem; }
+    .step-content strong { display: block; color: var(--slate-900); font-weight: 600; margin-bottom: .3rem; }
+    .step-content p { font-size: .9rem; margin: 0; }
+
+    /* Navigation pattern grid */
+    .pattern-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+    .pattern-card { border: 1px solid var(--slate-300); border-radius: .75rem; padding: 1.25rem; }
+    .pattern-card .p-label { font-size: .7rem; font-weight: 700; color: var(--slate-500); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .5rem; }
+    .pattern-card strong { display: block; color: var(--slate-900); font-size: .9rem; font-weight: 600; margin-bottom: .35rem; }
+    .pattern-card p { font-size: .82rem; color: var(--slate-500); margin: 0; line-height: 1.5; }
+    .pattern-before { border-color: #fca5a5; background: #fff5f5; }
+    .pattern-before .p-label { color: #b91c1c; }
+    .pattern-after { border-color: #6ee7b7; background: #f0fdf4; }
+    .pattern-after .p-label { color: #065f46; }
+
+    /* ── NEXT PROJECT ── */
+    .next-project { background: var(--slate-900); padding: 3rem 1.5rem; text-align: center; }
+    .next-project p { color: #64748b; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .75rem; }
+    .next-project h3 { color: var(--white); font-size: 1.4rem; font-weight: 700; margin-bottom: .5rem; }
+    .next-project .sub { color: #94a3b8; font-size: .95rem; margin-bottom: 1.5rem; }
+    .btn-primary { display: inline-block; background: var(--indigo); color: var(--white); padding: .75rem 1.75rem; border-radius: .5rem; font-weight: 600; text-decoration: none; font-size: .9rem; transition: background .2s; }
+    .btn-primary:hover { background: var(--indigo-dark); }
+    .btn-ghost { display: inline-block; border: 1.5px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); padding: .75rem 1.75rem; border-radius: .5rem; font-weight: 600; text-decoration: none; font-size: .9rem; margin-left: .75rem; transition: border-color .2s, color .2s; }
+    .btn-ghost:hover { border-color: white; color: white; }
+
+    @media (max-width: 600px) {
+      .role-card, .pattern-grid { grid-template-columns: 1fr; }
+      .connected { flex-direction: column; align-items: flex-start; }
+      .connected-link { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html#portfolio" class="nav-back">
+    <i class="fa fa-arrow-left" style="font-size:.75rem;"></i> Back to work
+  </a>
+  <a href="../index.html" class="nav-logo">DR</a>
+  <a href="../index.html#contact" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="case-hero">
+  <div class="breadcrumb">Case Study · Navigation · Accessibility</div>
+  <h1>Redesigning the Global Header &amp; Footer Across Two Enterprise Sites</h1>
+  <p class="subtitle">A complete rebuild of the navigation architecture for thermofisher.com and fishersci.com — improving usability, accessibility compliance, and mobile patterns for millions of users.</p>
+
+  <div class="stats-bar">
+    <div class="stat">
+      <span class="stat-num">2</span>
+      <span class="stat-label">Enterprise sites updated</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">WCAG</span>
+      <span class="stat-label">Accessibility compliant</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">↑</span>
+      <span class="stat-label">Navigation satisfaction</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">↓</span>
+      <span class="stat-label">Nav support tickets</span>
+    </div>
+  </div>
+</section>
+
+<!-- HEADER COMPARISON -->
+<div class="comparison-strip">
+  <div class="label">Same AEM component system — two distinct brand expressions</div>
+  <img src="../images/screenshots/header-comparison.jpg"
+       alt="Side-by-side comparison of thermofisher.com and fishersci.com global headers"
+       class="comparison-img">
+</div>
+
+<!-- BODY -->
+<div class="case-body">
+
+  <!-- CONTEXT -->
+  <div class="case-section">
+    <div class="section-label">The Problem</div>
+    <h2>Users couldn't find what they needed — and the experience showed it</h2>
+    <p>ThermoFisher's global header and footer had accumulated years of incremental changes without a cohesive direction. Navigation patterns were inconsistent between desktop and mobile, accessibility standards weren't met, and the visual language had fallen out of step with modern expectations.</p>
+    <p>Users were struggling to navigate — particularly on mobile, where the experience hadn't been meaningfully updated. Support tickets related to navigation were a recurring signal. At the same time, the header and footer weren't built on the design system components, meaning every team that needed to make a change was working from scratch, creating more inconsistency over time.</p>
+
+    <blockquote>
+      <p>"The header and footer are the frame around every single page. Getting them wrong means every user, on every visit, feels the friction."</p>
+    </blockquote>
+  </div>
+
+  <hr>
+
+  <!-- ROLE -->
+  <div class="case-section">
+    <div class="section-label">My Role</div>
+    <h2>Design, engineering, and release ownership — end to end</h2>
+    <p>I wore every hat on this one. I designed the navigation architecture, wrote all the AEM component code, and owned the release — managing the staged rollout across both sites and coordinating with every development team that needed to adopt the new components. This wasn't a project where I handed specs to engineers; I was the engineer.</p>
+
+    <div class="role-card">
+      <div class="role-item">
+        <strong>Title</strong>
+        <span>Lead / Manager, UI/UX Engineering</span>
+      </div>
+      <div class="role-item">
+        <strong>Scope</strong>
+        <span>thermofisher.com + fishersci.com</span>
+      </div>
+      <div class="role-item">
+        <strong>Responsibilities</strong>
+        <span>UX design, full front-end engineering, AEM component build, release management</span>
+      </div>
+      <div class="role-item">
+        <strong>Connected to</strong>
+        <span>ThermoFisher Design System (Case Study 1)</span>
+      </div>
+    </div>
+
+    <div class="connected">
+      <div class="connected-icon">
+        <i class="fa fa-link" style="color:white;font-size:.9rem;"></i>
+      </div>
+      <div class="connected-text">
+        <strong>Built on the ThermoFisher Design System</strong>
+        <span>This project was the design system applied at enterprise scale — the header and footer were rebuilt using the AEM component library I created.</span>
+      </div>
+      <a href="thermofisher-design-system.html" class="connected-link">
+        View design system case study <i class="fa fa-arrow-right" style="font-size:.65rem;"></i>
+      </a>
+    </div>
+
+    <div class="tags">
+      <span class="tag tag-blue">AEM / Adobe Experience Manager</span>
+      <span class="tag tag-purple">Navigation Design</span>
+      <span class="tag tag-green">WCAG 2.1 Accessibility</span>
+      <span class="tag tag-orange">Mobile UX</span>
+      <span class="tag tag-red">Mega-Menu Architecture</span>
+      <span class="tag tag-blue">Cross-team Coordination</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- BEFORE / AFTER PATTERNS -->
+  <div class="case-section">
+    <div class="section-label">Design Decisions</div>
+    <h2>What changed and why</h2>
+    <p>The revamp wasn't a visual refresh — it was a structural rethink. Every pattern decision was driven by user behavior, accessibility requirements, and the need to work consistently across both brand identities using the same underlying components.</p>
+
+    <div class="pattern-grid">
+      <div class="pattern-card pattern-before">
+        <div class="p-label">Before</div>
+        <strong>Inconsistent mobile nav</strong>
+        <p>Mobile navigation patterns differed between the two sites and hadn't kept pace with mobile usage growth. Users had to hunt for the right entry point.</p>
+      </div>
+      <div class="pattern-card pattern-after">
+        <div class="p-label">After</div>
+        <strong>Unified mobile patterns</strong>
+        <p>Standardized hamburger navigation with consistent drawer behavior, touch targets sized to WCAG spec, and clear hierarchy from top-level to sub-categories.</p>
+      </div>
+      <div class="pattern-card pattern-before">
+        <div class="p-label">Before</div>
+        <strong>Accessibility gaps</strong>
+        <p>Navigation lacked proper ARIA labels, keyboard navigation support was incomplete, and focus states were missing or inconsistent across interactive elements.</p>
+      </div>
+      <div class="pattern-card pattern-after">
+        <div class="p-label">After</div>
+        <strong>WCAG 2.1 compliant</strong>
+        <p>Full keyboard navigation support, proper ARIA roles and labels, visible focus indicators, and skip-nav links — compliant across both site implementations.</p>
+      </div>
+      <div class="pattern-card pattern-before">
+        <div class="p-label">Before</div>
+        <strong>Ad-hoc mega-menu</strong>
+        <p>The mega-menu had grown organically without a clear grid or information architecture. Category groupings were inconsistent and the visual density was overwhelming.</p>
+      </div>
+      <div class="pattern-card pattern-after">
+        <div class="p-label">After</div>
+        <strong>Structured mega-menu</strong>
+        <p>Redesigned mega-menu with a clear grid system, consistent grouping logic, and visual hierarchy that guides users from broad categories to specific destinations.</p>
+      </div>
+      <div class="pattern-card pattern-before">
+        <div class="p-label">Before</div>
+        <strong>Footer as an afterthought</strong>
+        <p>Footer link architecture had accumulated redundancy and lacked logical grouping. Critical utility links (Order Status, Support) were hard to find.</p>
+      </div>
+      <div class="pattern-card pattern-after">
+        <div class="p-label">After</div>
+        <strong>Restructured footer IA</strong>
+        <p>Reorganized into clear utility, product, and company groupings. High-frequency tasks (Order Status, Quick Order, Support) elevated for faster access.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- PROCESS -->
+  <div class="case-section">
+    <div class="section-label">The Process</div>
+    <h2>The hardest constraint: change everything without breaking anything</h2>
+    <p>The header and footer are on every page of two of the largest life sciences e-commerce sites in the world. A mistake here isn't a bug on one page — it's a bug everywhere, for every user, instantly. That shaped every decision in our process.</p>
+
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Navigation Audit</strong>
+          <p>Catalogued every navigation pattern across both sites — desktop and mobile. Identified accessibility failures, inconsistent interaction patterns, and information architecture issues. This became the brief that aligned stakeholders on what needed to change and why.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Stakeholder Alignment</strong>
+          <p>Presented findings to development managers and directors across both properties. The core challenge: every team had their own opinion on nav structure. We got alignment by anchoring every decision to user data and accessibility requirements — not personal preference.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>Design &amp; Prototype</strong>
+          <p>Designed the new header and footer in Figma, covering desktop, tablet, and mobile breakpoints for both brand identities. Built interactive prototypes to validate navigation flows with stakeholders before writing a line of code.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>AEM Component Build</strong>
+          <p>I wrote the header and footer as AEM components, using the design system as the foundation. The same component code powers both thermofisher.com and fishersci.com — brand differences are handled through design tokens, not separate codebases. One build, two brands.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <strong>Release Management</strong>
+          <p>I owned the release end to end — validating in staging, coordinating rollout timing with each development team, and maintaining compatibility so no team's pages broke mid-migration. The header is on every page; there's no such thing as a quiet release.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- CHALLENGES -->
+  <div class="case-section">
+    <div class="section-label">The Challenges</div>
+    <h2>Three things that almost derailed it</h2>
+
+    <div class="challenge-grid">
+      <div class="challenge-card">
+        <strong>Coordinating across 900 teams</strong>
+        <p>Every team with pages on the sites needed to migrate. The SOPs we built for the design system (Case Study 1) were essential — without them, coordinating this rollout would have been impossible.</p>
+      </div>
+      <div class="challenge-card">
+        <strong>Not breaking existing pages</strong>
+        <p>The header sits on millions of pages. We built a careful compatibility layer so teams could adopt the new components on their own timeline without their pages breaking in the interim.</p>
+      </div>
+      <div class="challenge-card">
+        <strong>Two brands, one system</strong>
+        <p>thermofisher.com and fishersci.com have distinct visual identities. The component had to support both without forking — solved through the design token architecture in the underlying system.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- OUTCOME -->
+  <div class="case-section">
+    <div class="section-label">The Outcome</div>
+    <h2>A navigation system that works for millions of users</h2>
+    <p>The revamped header and footer shipped across both sites. The result: a navigation experience that meets accessibility standards, works consistently across devices, and maintains brand distinction between thermofisher.com and fishersci.com — all powered by the same underlying AEM components.</p>
+
+    <div class="outcomes">
+      <div class="outcome-chip">
+        <span class="num">WCAG</span>
+        <span class="label">2.1 accessibility compliance achieved</span>
+      </div>
+      <div class="outcome-chip">
+        <span class="num">↓</span>
+        <span class="label">Fewer navigation-related support tickets</span>
+      </div>
+      <div class="outcome-chip">
+        <span class="num">↑</span>
+        <span class="label">Positive user feedback on navigation</span>
+      </div>
+      <div class="outcome-chip">
+        <span class="num">2×</span>
+        <span class="label">Sites updated from one component build</span>
+      </div>
+    </div>
+
+    <p style="margin-top:1.5rem;">The project also validated the design system's value at scale. By building on the AEM component library rather than from scratch, we were able to ship a consistent, accessible navigation experience across two major enterprise sites — without duplicating the engineering effort.</p>
+  </div>
+
+</div><!-- /case-body -->
+
+<!-- NEXT PROJECT -->
+<div class="next-project">
+  <p>Previous case study</p>
+  <h3>ThermoFisher Design System</h3>
+  <div class="sub">How I founded a UX/UI Engineering team and built the AEM component library that made this project possible.</div>
+  <a href="thermofisher-design-system.html" class="btn-primary">Read case study</a>
+  <a href="../index.html#portfolio" class="btn-ghost">Back to all work</a>
+</div>
+
+</body>
+</html>
