@@ -1,0 +1,13 @@
+{
+  "posts": [
+    {
+      "id": "post-001",
+      "date": "2026-07-05",
+      "title": "The gap between design and engineering isn't a talent problem — it's a structure problem",
+      "content": "Most companies treat design and engineering as sequential steps. Design finishes, throws specs over the wall, engineering builds it. Then the two teams argue about why the built thing doesn't match the designed thing.\n\nThe problem isn't that designers don't understand code, or that engineers don't care about UX. The problem is that the structure forces handoffs where there should be collaboration.\n\nWhen I founded the UI/UX Engineering team at ThermoFisher, the goal wasn't to find people who were half-designer and half-engineer. It was to create a team that could live in the gap — fluent enough in both languages to translate, close loops before they became bugs, and make decisions that neither side could make alone.\n\nThe lesson: if you keep hiring for the gap without changing the structure, you'll keep recreating the gap.",
+      "excerpt": "Most companies treat design and engineering as sequential steps. The problem isn't talent — it's structure.",
+      "tags": ["design systems", "leadership", "team building"],
+      "source": "original"
+    }
+  ]
+}

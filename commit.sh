@@ -79,9 +79,28 @@ thermofisher-homepage.html
   - Author-friendly AEM components: hero, promo, product grid, editorial"
 
 # ── Commit 5: Supporting files ───────────────────────────────────────────────
-echo "→ Commit 5/5: Supporting files"
+echo "→ Commit 5/6: Supporting files"
 git add portfolio-improvement-report.md 2>/dev/null || true
 git diff --cached --quiet || git commit -m "docs: portfolio improvement report (LinkedIn leaders benchmark)"
+
+# ── Commit 6: Blog system ────────────────────────────────────────────────────
+echo "→ Commit 6/6: Blog system"
+git add blog.html posts.json .github/workflows/new-post.yml
+git diff --cached --quiet || git commit -m "feat(blog): email/LinkedIn-triggered writing page
+
+blog.html
+  - Standalone writing page matching indigo design system
+  - Fetches posts.json dynamically; sorted newest-first
+  - Expand/collapse for long posts; source badges (LinkedIn/original/email)
+  - Linked from nav (Writing) and footer
+
+posts.json
+  - Static blog data store; one sample post included
+
+.github/workflows/new-post.yml
+  - workflow_dispatch trigger: title, content, tags, source inputs
+  - Python prepends new post to posts.json and commits
+  - Connects to Zapier for email → LinkedIn post automation"
 
 # ── Push ────────────────────────────────────────────────────────────────────
 echo ""

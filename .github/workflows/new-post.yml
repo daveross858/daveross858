@@ -1,0 +1,88 @@
+name: New Blog Post
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: "Post title (email subject line)"
+        required: true
+        type: string
+      content:
+        description: "Post content (email body)"
+        required: true
+        type: string
+      tags:
+        description: "Comma-separated tags (optional)"
+        required: false
+        default: ""
+        type: string
+      source:
+        description: "Source: original, linkedin, or email"
+        required: false
+        default: "email"
+        type: string
+
+jobs:
+  create-post:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Add post to posts.json
+        run: |
+          python3 << 'EOF'
+          import json, datetime, re, sys
+
+          # Load existing posts
+          with open('posts.json', 'r') as f:
+              data = json.load(f)
+
+          # Build new post
+          title   = """${{ inputs.title }}"""
+          content = """${{ inputs.content }}"""
+          tags_raw = """${{ inputs.tags }}"""
+          source  = """${{ inputs.source }}"""
+
+          # Parse tags
+          tags = [t.strip().lower() for t in tags_raw.split(',') if t.strip()] if tags_raw else []
+
+          # Generate slug-based ID
+          slug = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')[:40]
+          date_str = datetime.date.today().isoformat()
+          post_id = date_str + '-' + slug
+
+          # Generate excerpt (first 300 chars)
+          excerpt = content[:300].strip()
+          if len(content) > 300:
+              excerpt += '…'
+
+          new_post = {
+              "id": post_id,
+              "date": date_str,
+              "title": title,
+              "content": content,
+              "excerpt": excerpt,
+              "tags": tags,
+              "source": source
+          }
+
+          # Prepend (newest first in file too)
+          data['posts'].insert(0, new_post)
+
+          with open('posts.json', 'w') as f:
+              json.dump(data, f, indent=2, ensure_ascii=False)
+
+          print(f"✓ Added post: {post_id}")
+          EOF
+
+      - name: Commit and push
+        run: |
+          git config user.name  "Blog Bot"
+          git config user.email "actions@github.com"
+          git add posts.json
+          git commit -m "post: ${{ inputs.title }}"
+          git push
