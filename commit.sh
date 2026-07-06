@@ -12,7 +12,9 @@ if [ "$BRANCH" != "redesign/2026" ]; then
 fi
 
 # ── Remove any stale lock files ─────────────────────────────────────────────
-rm -f .git/HEAD.lock .git/index.lock
+# NOTE: Intentionally not deleting .git lock files automatically. If you hit a lock error,
+# ensure no other git process is running and remove the lock file manually.
+# rm -f .git/HEAD.lock .git/index.lock
 
 # ── Commit 1: Color & type system ──────────────────────────────────────────
 echo "→ Commit 1/5: Color & type system (style.css)"
