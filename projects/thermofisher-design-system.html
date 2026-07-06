@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThermoFisher Design System — David W. Ross</title>
+  <meta name="description" content="How I founded a UX/UI Engineering team and built an AEM component library adopted by 900+ internal teams across ThermoFisher Scientific.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --indigo: #6366f1;
+      --indigo-dark: #4f46e5;
+      --indigo-light: #eef2ff;
+      --slate-900: #0f172a;
+      --slate-700: #334155;
+      --slate-500: #64748b;
+      --slate-300: #cbd5e1;
+      --slate-100: #f1f5f9;
+      --white: #ffffff;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--slate-700);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(15,23,42,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+    }
+    .nav-back {
+      display: flex; align-items: center; gap: .5rem;
+      color: rgba(255,255,255,0.7); text-decoration: none;
+      font-size: .875rem; font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: var(--white); }
+    .nav-logo {
+      color: var(--white); font-weight: 700; font-size: 1rem;
+      text-decoration: none; letter-spacing: -.01em;
+    }
+    .nav-cta {
+      background: var(--indigo); color: var(--white);
+      padding: .45rem 1.1rem; border-radius: .375rem;
+      font-size: .8rem; font-weight: 600; text-decoration: none;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--indigo-dark); }
+
+    /* ── HERO ── */
+    .case-hero {
+      background: var(--slate-900);
+      padding: 7rem 1.5rem 4rem;
+      text-align: center;
+    }
+    .case-hero .breadcrumb {
+      color: var(--indigo); font-size: .8rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .08em;
+      margin-bottom: 1rem;
+    }
+    .case-hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.15; margin-bottom: 1rem;
+      max-width: 800px; margin-inline: auto;
+    }
+    .case-hero .subtitle {
+      color: #94a3b8; font-size: 1.1rem;
+      max-width: 600px; margin: 0 auto 2.5rem;
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 2rem; margin-top: 2.5rem;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      display: block; font-size: 2rem; font-weight: 700;
+      color: var(--indigo); line-height: 1;
+    }
+    .stat-label {
+      font-size: .78rem; color: #64748b;
+      text-transform: uppercase; letter-spacing: .06em; margin-top: .3rem;
+    }
+
+    /* ── SITE PREVIEW STRIP ── */
+    .sites-strip {
+      background: var(--slate-100);
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+    .sites-strip p {
+      font-size: .8rem; color: var(--slate-500);
+      text-transform: uppercase; letter-spacing: .08em;
+      margin-bottom: 1.5rem; font-weight: 600;
+    }
+    .sites-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+    }
+    .site-card {
+      background: var(--white); border: 1px solid var(--slate-300);
+      border-radius: .75rem; overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,.1);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .site-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.14); }
+    .site-card-header {
+      background: var(--slate-900); padding: .5rem .8rem;
+      display: flex; align-items: center; gap: .4rem;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .site-card-url {
+      background: rgba(255,255,255,0.1); border-radius: 4px;
+      padding: .15rem .6rem; font-size: .68rem; color: rgba(255,255,255,.6);
+      flex: 1; text-align: center; font-family: monospace;
+    }
+    .site-card-screenshot {
+      width: 100%; display: block;
+      border-bottom: 1px solid var(--slate-100);
+    }
+    .site-card-footer {
+      padding: .75rem 1rem; display: flex; align-items: center;
+      justify-content: space-between;
+    }
+    .site-card-footer strong { color: var(--slate-900); font-size: .85rem; }
+    .site-card-footer span { font-size: .75rem; color: var(--slate-500); display: block; }
+    .site-link {
+      font-size: .75rem; font-weight: 600; color: var(--indigo);
+      text-decoration: none; display: inline-flex; align-items: center; gap: .3rem;
+      white-space: nowrap;
+    }
+    .site-link:hover { text-decoration: underline; }
+
+    /* ── MAIN CONTENT ── */
+    .case-body {
+      max-width: 780px; margin: 0 auto; padding: 4rem 1.5rem;
+    }
+
+    .section-label {
+      font-size: .72rem; font-weight: 700; color: var(--indigo);
+      text-transform: uppercase; letter-spacing: .1em;
+      margin-bottom: .75rem;
+    }
+    h2 {
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--slate-900); margin-bottom: 1rem;
+    }
+    p { margin-bottom: 1.25rem; font-size: 1rem; line-height: 1.75; }
+    p:last-child { margin-bottom: 0; }
+
+    .case-section { margin-bottom: 3.5rem; }
+
+    /* Pull quote */
+    blockquote {
+      border-left: 3px solid var(--indigo);
+      margin: 2rem 0; padding: .75rem 1.5rem;
+      background: var(--indigo-light); border-radius: 0 .5rem .5rem 0;
+    }
+    blockquote p {
+      font-size: 1.1rem; font-style: italic;
+      color: var(--slate-900); font-weight: 500; margin: 0;
+    }
+
+    /* Role card */
+    .role-card {
+      background: var(--slate-900); color: var(--white);
+      border-radius: .75rem; padding: 1.75rem 2rem;
+      margin: 2rem 0;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .role-item strong {
+      display: block; font-size: .72rem; font-weight: 700;
+      color: var(--indigo); text-transform: uppercase;
+      letter-spacing: .08em; margin-bottom: .35rem;
+    }
+    .role-item span { font-size: .9rem; color: #cbd5e1; line-height: 1.4; }
+
+    /* Process steps */
+    .process-steps {
+      display: flex; flex-direction: column; gap: 0; margin: 2rem 0;
+    }
+    .step {
+      display: flex; gap: 1.25rem; padding: 1.25rem 0;
+      border-bottom: 1px solid var(--slate-100);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--indigo-light); color: var(--indigo);
+      font-weight: 700; font-size: .85rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: .1rem;
+    }
+    .step-content strong {
+      display: block; color: var(--slate-900);
+      font-weight: 600; margin-bottom: .3rem;
+    }
+    .step-content p { font-size: .9rem; margin: 0; }
+
+    /* Outcome chips */
+    .outcomes {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem; margin: 2rem 0;
+    }
+    .outcome-chip {
+      background: var(--indigo-light); border-radius: .75rem;
+      padding: 1.25rem; text-align: center;
+    }
+    .outcome-chip .num {
+      font-size: 1.6rem; font-weight: 700; color: var(--indigo);
+      display: block; line-height: 1;
+    }
+    .outcome-chip .label {
+      font-size: .8rem; color: var(--slate-700);
+      margin-top: .4rem; display: block;
+    }
+
+    /* Tags */
+    .tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+    .tag {
+      font-size: .72rem; font-weight: 600; padding: .25rem .7rem;
+      border-radius: 999px; text-transform: uppercase; letter-spacing: .04em;
+    }
+    .tag-blue { background: #dbeafe; color: #1d4ed8; }
+    .tag-purple { background: #ede9fe; color: #5b21b6; }
+    .tag-green { background: #d1fae5; color: #065f46; }
+    .tag-orange { background: #ffedd5; color: #9a3412; }
+
+    /* ── NEXT PROJECT ── */
+    .next-project {
+      background: var(--slate-900); padding: 3rem 1.5rem;
+      text-align: center;
+    }
+    .next-project p {
+      color: #64748b; font-size: .8rem; text-transform: uppercase;
+      letter-spacing: .08em; margin-bottom: .75rem;
+    }
+    .next-project h3 {
+      color: var(--white); font-size: 1.4rem; font-weight: 700;
+      margin-bottom: .5rem;
+    }
+    .next-project .sub { color: #94a3b8; font-size: .95rem; margin-bottom: 1.5rem; }
+    .btn-primary {
+      display: inline-block; background: var(--indigo); color: var(--white);
+      padding: .75rem 1.75rem; border-radius: .5rem;
+      font-weight: 600; text-decoration: none; font-size: .9rem;
+      transition: background .2s;
+    }
+    .btn-primary:hover { background: var(--indigo-dark); }
+    .btn-ghost {
+      display: inline-block; border: 1.5px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7); padding: .75rem 1.75rem;
+      border-radius: .5rem; font-weight: 600; text-decoration: none;
+      font-size: .9rem; margin-left: .75rem; transition: border-color .2s, color .2s;
+    }
+    .btn-ghost:hover { border-color: white; color: white; }
+
+    /* Divider */
+    hr { border: none; border-top: 1px solid var(--slate-100); margin: 3.5rem 0; }
+
+    @media (max-width: 600px) {
+      .role-card { grid-template-columns: 1fr; }
+      .stats-bar { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html#portfolio" class="nav-back">
+    <i class="fa fa-arrow-left" style="font-size:.75rem;"></i> Back to work
+  </a>
+  <a href="../index.html" class="nav-logo">DR</a>
+  <a href="../index.html#contact" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="case-hero">
+  <div class="breadcrumb">Case Study · Design Systems · Enterprise</div>
+  <h1>Building the Design System that Powers ThermoFisher Scientific</h1>
+  <p class="subtitle">From identifying an organizational gap to founding a team, architecting an AEM component library, and driving 100% adoption across the enterprise.</p>
+
+  <div class="stats-bar">
+    <div class="stat">
+      <span class="stat-num">900+</span>
+      <span class="stat-label">Internal teams adopted</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Adoption rate</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">2</span>
+      <span class="stat-label">Major enterprise sites</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">CDN</span>
+      <span class="stat-label">Distributed to agencies</span>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE SITES STRIP -->
+<div class="sites-strip">
+  <p>Live on production today</p>
+  <div class="sites-grid">
+    <div class="site-card">
+      <div class="site-card-header">
+        <div class="dot" style="background:#ff5f57;"></div>
+        <div class="dot" style="background:#febc2e;"></div>
+        <div class="dot" style="background:#28c840;"></div>
+        <div class="site-card-url">thermofisher.com</div>
+      </div>
+      <a href="https://www.thermofisher.com/us/en/home.html" target="_blank" rel="noopener">
+        <img src="../images/screenshots/thermofisher-home.jpg" alt="ThermoFisher Scientific homepage" class="site-card-screenshot">
+      </a>
+      <div class="site-card-footer">
+        <div>
+          <strong>Thermo Fisher Scientific</strong>
+          <span>Fortune 500 · Life Sciences</span>
+        </div>
+        <a href="https://www.thermofisher.com/us/en/home.html" target="_blank" rel="noopener" class="site-link">
+          Visit live site <i class="fa fa-arrow-up-right-from-square" style="font-size:.6rem;"></i>
+        </a>
+      </div>
+    </div>
+    <div class="site-card">
+      <div class="site-card-header">
+        <div class="dot" style="background:#ff5f57;"></div>
+        <div class="dot" style="background:#febc2e;"></div>
+        <div class="dot" style="background:#28c840;"></div>
+        <div class="site-card-url">fishersci.com</div>
+      </div>
+      <a href="https://www.fishersci.com/us/en/home.html" target="_blank" rel="noopener">
+        <img src="../images/screenshots/fishersci-home.jpg" alt="Fisher Scientific homepage" class="site-card-screenshot">
+      </a>
+      <div class="site-card-footer">
+        <div>
+          <strong>Fisher Scientific</strong>
+          <span>ThermoFisher subsidiary · Same component system, distinct brand</span>
+        </div>
+        <a href="https://www.fishersci.com/us/en/home.html" target="_blank" rel="noopener" class="site-link">
+          Visit live site <i class="fa fa-arrow-up-right-from-square" style="font-size:.6rem;"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="case-body">
+
+  <!-- CONTEXT -->
+  <div class="case-section">
+    <div class="section-label">The Problem</div>
+    <h2>A Fortune 500 company without a unified UI foundation</h2>
+    <p>ThermoFisher Scientific operates at massive scale — hundreds of internal development teams, external agencies, and multiple customer-facing brands all building digital products independently. The result was visible: inconsistent UI quality, fragmented UX patterns, and no shared vocabulary between design and engineering.</p>
+    <p>Different teams had built their own component solutions in different languages and tech stacks. There was no single source of truth for how a button, a search bar, or a product card should look, behave, or be built. Every new feature started from scratch.</p>
+
+    <blockquote>
+      <p>"I saw a gap in the UI quality and the UX designs — and rather than report it, I built the team to fix it."</p>
+    </blockquote>
+  </div>
+
+  <hr>
+
+  <!-- ROLE -->
+  <div class="case-section">
+    <div class="section-label">My Role</div>
+    <h2>I founded the team</h2>
+    <p>This project didn't begin with a mandate — it began with a gap I identified and a proposal I made. I created the UX/UI Engineering function at ThermoFisher from scratch: defined the charter, built the team, and established the practice that bridges design and engineering at enterprise scale.</p>
+
+    <div class="role-card">
+      <div class="role-item">
+        <strong>Title</strong>
+        <span>Lead / Manager, UI/UX Engineering</span>
+      </div>
+      <div class="role-item">
+        <strong>Team</strong>
+        <span>Founded and led the UX/UI Engineering team</span>
+      </div>
+      <div class="role-item">
+        <strong>Scope</strong>
+        <span>Design, architecture, and front-end engineering</span>
+      </div>
+      <div class="role-item">
+        <strong>Platform</strong>
+        <span>Adobe Experience Manager (AEM) — Core + Custom components</span>
+      </div>
+    </div>
+
+    <div class="tags">
+      <span class="tag tag-blue">AEM / Adobe Experience Manager</span>
+      <span class="tag tag-purple">Design Systems</span>
+      <span class="tag tag-green">Team Leadership</span>
+      <span class="tag tag-orange">Enterprise Architecture</span>
+      <span class="tag tag-blue">Figma</span>
+      <span class="tag tag-purple">HTL / Sightly</span>
+      <span class="tag tag-green">CDN Distribution</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- WHAT I BUILT -->
+  <div class="case-section">
+    <div class="section-label">What I Built</div>
+    <h2>A full AEM component library — designed, architected, and coded</h2>
+    <p>The system covers both core AEM components and a layer of custom components tailored to ThermoFisher's product and content needs. Every component was designed in Figma, architecturally specified, and hand-coded — giving both design teams and development teams a single reference point.</p>
+    <p>The library covers the full surface of customer-facing experiences: navigation systems, search, hero units, product cards, editorial layouts, promotional banners, forms, and more. Critically, the system was built to be platform-agnostic — distributed via CDN so teams using different tech stacks could consume the same components without rebuilding them.</p>
+  </div>
+
+  <hr>
+
+  <!-- PROCESS -->
+  <div class="case-section">
+    <div class="section-label">The Process</div>
+    <h2>The hardest part wasn't building it — it was selling it</h2>
+    <p>900 internal teams means 900 different opinions. Development managers and directors had existing workflows, existing component solutions, and existing tech stacks. Getting alignment required more than a good component library — it required a compelling case for change and a frictionless path to adoption.</p>
+
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Audit &amp; Gap Analysis</strong>
+          <p>Mapped the existing UI landscape across ThermoFisher's customer-facing properties. Documented inconsistencies, redundant components, and places where UX quality fell short of brand standards.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Design &amp; Architect the Library</strong>
+          <p>Built the component library in Figma and AEM in parallel — establishing design tokens, component props, and variant structures that could support multiple brands (thermofisher.com, fishersci.com) from the same underlying system.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>Stakeholder Alignment</strong>
+          <p>Ran sessions with development managers and directors across business units. The core objection: "we'd have to maintain two component libraries." The answer was a CDN-delivered system — teams consume components without maintaining them, regardless of their tech stack.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>SOPs &amp; Onboarding Workflow</strong>
+          <p>Created standard operating procedures for each team type: how to request new components, how to report issues, how to consume updates without breaking existing implementations. The SOPs turned adoption from a one-time event into a sustainable practice.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <strong>Cross-Platform Rollout</strong>
+          <p>Worked hands-on with teams across all platforms during migration — helping implement components, resolving integration issues, and iterating the system based on real-world feedback from the teams consuming it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- OUTCOME -->
+  <div class="case-section">
+    <div class="section-label">The Outcome</div>
+    <h2>100% adoption. Enterprise-wide.</h2>
+    <p>Every internal team with a customer-facing product adopted the system. External agencies were brought onto the same components via CDN, maintaining brand and UX standards even outside the org. The system runs on two of the largest life sciences e-commerce platforms in the world.</p>
+
+    <div class="outcomes">
+      <div class="outcome-chip">
+        <span class="num">900+</span>
+        <span class="label">Internal teams using the system when I left</span>
+      </div>
+      <div class="outcome-chip">
+        <span class="num">100%</span>
+        <span class="label">Adoption across all customer-facing dev teams</span>
+      </div>
+      <div class="outcome-chip">
+        <span class="num">2</span>
+        <span class="label">Major brand sites unified on one system</span>
+      </div>
+      <div class="outcome-chip">
+        <span class="num">∞</span>
+        <span class="label">External agencies maintained via CDN delivery</span>
+      </div>
+    </div>
+
+    <p style="margin-top:1.5rem;">Beyond the numbers: the system changed how ThermoFisher thinks about design and engineering. By creating the UX/UI Engineering function, I helped establish a practice that lives at the intersection of craft and code — and gave hundreds of teams a shared language they didn't have before.</p>
+  </div>
+
+</div><!-- /case-body -->
+
+<!-- NEXT PROJECT -->
+<div class="next-project">
+  <p>Next case study</p>
+  <h3>ThermoFisher — Header &amp; Footer Revamp</h3>
+  <div class="sub">Applying the design system at scale: a complete rebuild of the global navigation and footer across both major enterprise properties.</div>
+  <a href="thermofisher-header-footer.html" class="btn-primary">Read case study</a>
+  <a href="../index.html#portfolio" class="btn-ghost">Back to all work</a>
+</div>
+
+</body>
+</html>
