@@ -2060,3 +2060,43 @@ html {
 .bg-primary-gradient {
 	background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
 }
+
+/* Hero CTA Buttons */
+.hero-cta-primary {
+	display: inline-flex;
+	align-items: center;
+	gap: .5rem;
+	background: #6366f1;
+	color: #fff;
+	font-weight: 600;
+	font-size: .9rem;
+	padding: .75rem 1.75rem;
+	border-radius: .5rem;
+	text-decoration: none;
+	transition: background .2s, transform .15s;
+}
+
+.hero-cta-primary:hover,
+.hero-cta-primary:focus-visible {
+	background: #4f46e5;
+	transform: translateY(-1px);
+	outline: 2px solid #4f46e5;
+	outline-offset: 2px;
+}
+
+.hero-cta-ghost {
+	display: inline-flex;
+	align-items: center;
+	gap: .5rem;
+	background: transparent;
+	color: #cbd5e1;
+	font-weight: 500;
+	font-size: .9rem;
+	padding: .75rem 1.75rem;
+	border-radius: .5rem;
+	border: 1px solid rgba(203, 213, 225, 0.25);
+	text-decoration: none;
+	transition: border-color .2s, color .2s, transform .15s;
+	cursor: not-allowed;
+	opacity: 0.6;
+}
