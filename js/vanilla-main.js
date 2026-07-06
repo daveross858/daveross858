@@ -119,7 +119,12 @@ VanillaJS.ready(function() {
                 e.preventDefault();
                 const targetSection = sections[index];
                 if (targetSection) {
-                    VanillaJS.smoothScrollTo(targetSection, 1000);
+                    const header = document.getElementById('site-header');
+                    const offset = header ? header.offsetHeight : 0;
+                    const top = Math.max(0, targetSection.getBoundingClientRect().top + window.pageYOffset - offset);
+
+                    VanillaJS.animate(document.documentElement, { scrollTop: top }, 1000);
+                    VanillaJS.animate(document.body, { scrollTop: top }, 1000);
                 }
             });
         });
