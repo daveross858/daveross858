@@ -97,59 +97,62 @@ VanillaJS.ready(function() {
     function initNavigation() {
         const navLinks = document.querySelectorAll('#main-nav .topnav-link');
         const sections = document.querySelectorAll('section.on-menu:not(#home)');
-        let currentLink = -1;
-        // Navigation click handlers
-        navLinks.forEach((link, index) => {
+        let currentLink = null;
+
+        function scrollToSection(targetSection) {
+            const header = document.getElementById('site-header');
+            const offset = header ? header.offsetHeight : 0;
+            const top = Math.max(0, targetSection.getBoundingClientRect().top + window.pageYOffset - offset);
+            VanillaJS.animate(document.documentElement, { scrollTop: top }, 1000);
+            VanillaJS.animate(document.body, { scrollTop: top }, 1000);
+        }
+
+        // Match each in-page link to its target section by href (not array position),
+        // and skip external links (e.g. Writing -> blog.html) so they navigate normally.
+        const linkBySectionId = {};
+        navLinks.forEach((link) => {
+            const href = link.getAttribute('href') || '';
+            if (!href.startsWith('#') || href === '#') return;
+            linkBySectionId[href.slice(1)] = link;
+
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                
-                const targetSection = sections[index];
-                if (targetSection) {
-                    const header = document.getElementById('site-header');
-                    const offset = header ? header.offsetHeight : 0;
-                    const top = Math.max(0, targetSection.getBoundingClientRect().top + window.pageYOffset - offset);
-                    VanillaJS.animate(document.documentElement, { scrollTop: top }, 1000);
-                    VanillaJS.animate(document.body, { scrollTop: top }, 1000);
-                }
+                const targetSection = document.getElementById(href.slice(1));
+                if (targetSection) scrollToSection(targetSection);
             });
         });
 
         // Mobile menu section link smooth scroll
         const mobileNavLinks = document.querySelectorAll('#mobile-menu nav a[href^="#"]:not([href="#"]):not([aria-disabled="true"])');
-        mobileNavLinks.forEach((link, index) => {
+        mobileNavLinks.forEach((link) => {
+            const href = link.getAttribute('href') || '';
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                const targetSection = sections[index];
-                if (targetSection) {
-                    const header = document.getElementById('site-header');
-                    const offset = header ? header.offsetHeight : 0;
-                    const top = Math.max(0, targetSection.getBoundingClientRect().top + window.pageYOffset - offset);
-
-                    VanillaJS.animate(document.documentElement, { scrollTop: top }, 1000);
-                    VanillaJS.animate(document.body, { scrollTop: top }, 1000);
-                }
+                const targetSection = document.getElementById(href.slice(1));
+                if (targetSection) scrollToSection(targetSection);
             });
         });
 
         // Scroll-based navigation highlighting (replacing waypoints)
         function updateActiveNav() {
             const scrollPos = window.pageYOffset;
-            
-            sections.forEach((section, index) => {
+
+            sections.forEach((section) => {
                 const rect = section.getBoundingClientRect();
                 const sectionTop = rect.top + scrollPos;
                 const sectionHeight = rect.height;
-                
+
                 if (scrollPos >= sectionTop - 100 && scrollPos < sectionTop + sectionHeight - 100) {
-                    if (currentLink !== index) {
-                        navLinks[currentLink]?.classList.remove('current');
-                        navLinks[index]?.classList.add('current');
-                        currentLink = index;
+                    const link = linkBySectionId[section.id];
+                    if (link && currentLink !== link) {
+                        currentLink?.classList.remove('current');
+                        link.classList.add('current');
+                        currentLink = link;
                     }
                 }
             });
         }
-        
+
         window.addEventListener('scroll', updateActiveNav);
         updateActiveNav(); // Initial call
     }
