@@ -240,6 +240,12 @@
         var content = (r[idx['Content']] || '').trim();
         var hashtagsRaw = (r[idx['Hashtags']] || '').trim();
         var date = (r[idx['Date']] || '').trim();
+        if (!date) {
+          // Fall back to the image-generation timestamp embedded in the URL columns (st=YYYY-MM-DD...)
+          var urlField = (r[idx['url']] || '') + ' ' + (r[idx['Image URL']] || '');
+          var m = urlField.match(/st=(\d{4}-\d{2}-\d{2})/);
+          if (m) date = m[1];
+        }
         var tags = hashtagsRaw.split(/\s+/).filter(Boolean).map(function(t) {
           return t.replace(/^#/, '');
         });
